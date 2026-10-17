@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A192F">
+
+  <title>Zee Home Services LLC | Handyman & Property Turnover</title>
+  <meta name="description" content="Family-owned home services in Rancho Cordova, Folsom, El Dorado Hills, Sacramento and surrounding areas. Handyman services, repairs and rental turnovers.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0A192F',
+            'navy-light': '#112240',
+            mint: '#64FFDA',
+            'mint-deep': '#0D9488',
+            'mint-bg': '#E6FFFA',
+            surface: '#F8FAFC'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --navy: #0A192F;
+      --navy-light: #112240;
+      --mint: #64FFDA;
+      --mint-deep: #0D9488;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 150px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F8FAFC;
+      color: #1E293B;
+    }
+
+    button, a, input {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 3px solid var(--mint-deep);
+      outline-offset: 3px;
+    }
+
+    .hero-bg {
+      background:
+        linear-gradient(115deg, rgba(10,25,47,.97), rgba(17,34,64,.86)),
+        url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=85')
+        center/cover no-repeat;
+    }
+
+    .tab-btn {
+      transition: background .2s ease, color .2s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--mint);
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 35px rgba(15, 23, 42, .09);
+    }
+
+    .included-list li {
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .included-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--mint-deep);
+      font-weight: 800;
+    }
+
+    .flying-item {
+      position: fixed;
+      z-index: 100;
+      pointer-events: none;
+      transition: transform .65s ease, opacity .65s ease;
+    }
+
+    .drawer-overlay {
+      transition: opacity .25s ease;
+    }
+
+    .drawer-panel {
+      transition: transform .3s ease;
+    }
+
+    body.cart-open {
+      overflow: hidden;
+    }
+
+    .sticky-cart {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .social-button {
+      transition: transform .2s ease, filter .2s ease;
+    }
+
+    .social-button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen antialiased">
+
+  <!-- FIXED HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-navy text-white shadow-xl">
+
+    <!-- Contact Bar -->
+    <div class="border-b border-white/10">
+      <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2">
+
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm">
+          <a href="tel:2792577429"
+             class="flex items-center gap-2 text-mint font-bold hover:text-white transition">
+            <i class="fa-solid fa-phone"></i>
+            <span>(279) 257-7429</span>
+          </a>
+
+          <a href="mailto:zeehomservices@zeehomeservices.com"
+             class="hidden sm:flex items-center gap-2 text-slate-300 hover:text-mint transition">
+            <i class="fa-solid fa-envelope text-mint"></i>
+            zeehomeservices@zeehomeservices.com
+          </a>
+        </div>
+
+        <div class="flex items-center gap-3 text-lg">
+          <a href="https://maps.app.goo.gl/3SrKrKDFjpmpw22Y9?g_st=ic"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Google Maps and reviews"
+             title="Google Maps and reviews"
+             class="hover:text-mint transition">
+            <i class="fa-solid fa-location-dot"></i>
+          </a>
+
+          <a href="https://youtube.com/@zeehomeservices?si=7J5KoyimQtkkhYjF"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="YouTube"
+             title="YouTube"
+             class="hover:text-red-400 transition">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+
+          <a href="https://facebook.com"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Facebook"
+             title="Facebook"
+             class="hover:text-blue-400 transition">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+
+          <button onclick="openCart()"
+                  class="relative ml-2 rounded-xl bg-white/10 hover:bg-white/20 px-3 py-2 transition"
+                  aria-label="Open selected services">
+            <i class="fa-solid fa-basket-shopping text-mint"></i>
+            <span id="cart-badge"
+                  class="absolute -top-2 -right-2 min-w-5 h-5 px-1 rounded-full bg-mint text-navy text-xs font-extrabold flex items-center justify-center">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brand and Tabs -->
+    <div class="max-w-7xl mx-auto px-4 py-3">
+      <div class="flex items-center justify-between gap-3 mb-3">
+        <button onclick="switchTab('home')"
+                class="flex items-center gap-3 text-left min-w-0">
+          <div class="w-11 h-11 rounded-xl bg-mint flex items-center justify-center text-navy text-xl shrink-0">
+            <i class="fa-solid fa-house-chimney"></i>
+          </div>
+          <div class="min-w-0">
+            <div class="font-extrabold text-base sm:text-lg leading-tight">
+              Zee Home Services LLC
+            </div>
+            <div class="text-[10px] sm:text-xs text-slate-400 tracking-wide">
+              PRACTICAL SOLUTIONS. SMARTER HOMES.
+            </div>
+          </div>
+        </button>
+
+        <a href="tel:2792577429"
+           class="hidden md:flex items-center gap-2 bg-mint text-navy font-extrabold rounded-xl px-4 py-3 hover:bg-white transition text-sm">
+          <i class="fa-solid fa-phone"></i>
+          Call Us
+        </a>
+      </div>
+
+      <nav class="flex gap-2 overflow-x-auto pb-1"
+           aria-label="Main navigation">
+
+        <button id="btn-home"
+                onclick="switchTab('home')"
+                class="tab-btn active rounded-xl px-4 py-3 text-xs sm:text-sm whitespace-nowrap">
+          <i class="fa-solid fa-house mr-1.5"></i>
+          About Us & Home
+        </button>
+
+        <button id="btn-handyman"
+                onclick="switchTab('handyman')"
+                class="tab-btn rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-300 hover:bg-white/10 whitespace-nowrap">
+          <i class="fa-solid fa-screwdriver-wrench mr-1.5"></i>
+          Handyman Services (10)
+        </button>
+
+        <button id="btn-turnover"
+                onclick="switchTab('turnover')"
+                class="tab-btn rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-300 hover:bg-white/10 whitespace-nowrap">
+          <i class="fa-solid fa-house-chimney-window mr-1.5"></i>
+          Turnover & Repairs
+        </button>
+
+        <button id="btn-calculator"
+                onclick="switchTab('calculator')"
+                class="tab-btn rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-300 hover:bg-white/10 whitespace-nowrap">
+          <i class="fa-solid fa-calculator mr-1.5"></i>
+          Price Calculator
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Spacer for fixed header -->
+  <div class="h-40 sm:h-36"></div>
+
+  <main class="flex-1">
+
+    <!-- ======================================================
+         TAB 0: HOME
+    ======================================================= -->
+    <section id="tab-home-content">
+
+      <!-- Hero -->
+      <section class="hero-bg text-white py-16 md:py-24 px-4">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
+          <div class="space-y-6">
+            <div class="inline-flex items-center gap-2 rounded-full border border-mint/40 bg-mint/10 text-mint px-4 py-2 text-xs font-bold uppercase tracking-wider">
+              <i class="fa-solid fa-people-roof"></i>
+              Family Owned & Operated LLC
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
+              Your Trusted Family
+              <span class="text-mint">Home Service Team</span>
+            </h1>
+
+            <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl">
+              Serving Rancho Cordova, Folsom, El Dorado Hills, and Sacramento with reliable handyman work, rental turnovers, and personal family care.
+            </p>
+
+            <div class="flex flex-wrap gap-3 pt-2">
+              <button onclick="switchTab('handyman')"
+                      class="rounded-xl bg-mint text-navy font-extrabold px-6 py-4 hover:bg-white transition shadow-lg">
+                <i class="fa-solid fa-screwdriver-wrench mr-2"></i>
+                Browse Services
+              </button>
+
+              <a href="tel:2792577429"
+                 class="rounded-xl border border-white/30 bg-white/5 text-white font-bold px-6 py-4 hover:bg-white/10 transition">
+                <i class="fa-solid fa-phone mr-2 text-mint"></i>
+                (279) 257-7429
+              </a>
+            </div>
+
+            <div class="flex flex-wrap gap-4 text-sm text-slate-300 pt-2">
+              <span><i class="fa-solid fa-check text-mint mr-2"></i>Personal Service</span>
+              <span><i class="fa-solid fa-check text-mint mr-2"></i>Clear Pricing</span>
+              <span><i class="fa-solid fa-check text-mint mr-2"></i>Local Team</span>
+            </div>
+          </div>
+
+          <!-- Hero contact card -->
+          <div class="rounded-3xl border border-white/15 bg-navy-light/80 backdrop-blur p-7 sm:p-9 shadow-2xl">
+            <div class="flex items-center gap-4 mb-7">
+              <div class="w-14 h-14 rounded-2xl bg-mint text-navy flex items-center justify-center text-2xl">
+                <i class="fa-solid fa-house-chimney-user"></i>
+              </div>
+              <div>
+                <h2 class="text-xl font-extrabold">Zee Home Services LLC</h2>
+                <p class="text-sm text-slate-400">Your home. Our family’s care.</p>
+              </div>
+            </div>
+
+            <div class="space-y-5">
+              <div class="flex items-start gap-4">
+                <i class="fa-solid fa-location-dot text-mint mt-1 text-lg"></i>
+                <div>
+                  <p class="text-xs text-slate-400 uppercase tracking-wider">Service Area</p>
+                  <p class="font-semibold mt-1">Rancho Cordova, Folsom, El Dorado Hills, Sacramento and surrounding areas</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <i class="fa-solid fa-phone text-mint mt-1 text-lg"></i>
+                <div>
+                  <p class="text-xs text-slate-400 uppercase tracking-wider">Phone</p>
+                  <a href="tel:2792577429" class="font-bold text-lg hover:text-mint transition">
+                    (279) 257-7429
+                  </a>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <i class="fa-solid fa-envelope text-mint mt-1 text-lg"></i>
+                <div class="min-w-0">
+                  <p class="text-xs text-slate-400 uppercase tracking-wider">Email</p>
+                  <a href="mailto:zeehomservices@zeehomeservices.com"
+                     class="font-semibold break-all hover:text-mint transition">
+                    zeehomeservices@zeehomeservices.com
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="border-t border-white/10 mt-7 pt-6">
+              <p class="text-sm text-slate-300 leading-relaxed">
+                From small home repairs to rental property preparation, we focus on practical solutions, clear communication, and attention to detail.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Family Story -->
+      <section class="py-16 md:py-20 px-4">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
+          <div>
+            <p class="text-mint-deep uppercase tracking-widest text-xs font-extrabold mb-3">
+              Who We Are
+            </p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-navy mb-6">
+              Our Family Story
+            </h2>
+
+            <div class="space-y-4 text-slate-600 leading-relaxed">
+              <p>
+                Zee Home Services LLC is a family-owned home services business built around hands-on work, practical problem-solving, and personal attention to every property.
+              </p>
+              <p>
+                We help homeowners and property managers with everyday repairs, handyman projects, rental turnovers, and cleaning preparation. Our goal is to make property maintenance more straightforward and less stressful.
+              </p>
+              <p>
+                As a local family team, we value honest communication, respect for your home, and a clear understanding of the work before it begins.
+              </p>
+            </div>
+
+            <button onclick="switchTab('turnover')"
+                    class="mt-7 inline-flex items-center gap-2 rounded-xl bg-navy text-white font-bold px-5 py-3 hover:bg-navy-light transition">
+              Explore Turnover Services
+              <i class="fa-solid fa-arrow-right text-mint"></i>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="rounded-3xl bg-navy text-white p-6 min-h-48 flex flex-col justify-between">
+              <i class="fa-solid fa-people-group text-mint text-3xl"></i>
+              <div>
+                <h3 class="font-extrabold text-lg">Family-Owned</h3>
+                <p class="text-sm text-slate-300 mt-2">Personal attention from a local family team.</p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl bg-mint-bg p-6 min-h-48 flex flex-col justify-between mt-8">
+              <i class="fa-solid fa-list-check text-mint-deep text-3xl"></i>
+              <div>
+                <h3 class="font-extrabold text-lg text-navy">Clear Scope</h3>
+                <p class="text-sm text-slate-600 mt-2">Understand what is included before work begins.</p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl bg-white border border-slate-200 shadow-sm p-6 min-h-48 flex flex-col justify-between">
+              <i class="fa-solid fa-house-circle-check text-mint-deep text-3xl"></i>
+              <div>
+                <h3 class="font-extrabold text-lg text-navy">Property Care</h3>
+                <p class="text-sm text-slate-600 mt-2">Practical maintenance and repair solutions.</p>
+              </div>
+            </div>
+
+            <div class="rounded-3xl bg-navy-light text-white p-6 min-h-48 flex flex-col justify-between mt-8">
+              <i class="fa-solid fa-handshake text-mint text-3xl"></i>
+              <div>
+                <h3 class="font-extrabold text-lg">Local Service</h3>
+                <p class="text-sm text-slate-300 mt-2">Serving Sacramento-area communities.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Benefits -->
+      <section class="py-16 px-4 bg-white border-y border-slate-200">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center max-w-2xl mx-auto mb-10">
+            <p class="text-mint-deep uppercase tracking-widest text-xs font-extrabold mb-3">Why Choose Us</p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-navy">A Better Home Service Experience</h2>
+            <p class="text-slate-500 mt-4">Simple, practical service built around your property and your priorities.</p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            <article class="rounded-2xl border border-slate-200 bg-surface p-7">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl mb-5">
+                <i class="fa-solid fa-people-group"></i>
+              </div>
+              <h3 class="font-extrabold text-xl text-navy">Direct Family Quality</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mt-3">A personal approach, direct communication, and attention to the details that matter in your home.</p>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-surface p-7">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl mb-5">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+              </div>
+              <h3 class="font-extrabold text-xl text-navy">Clear Upfront Pricing</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mt-3">Published starting prices help you plan. Final scope and any additional work should be confirmed before work begins.</p>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-surface p-7">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl mb-5">
+                <i class="fa-solid fa-location-crosshairs"></i>
+              </div>
+              <h3 class="font-extrabold text-xl text-navy">Prompt Local Response</h3>
+              <p class="text-slate-600 text-sm leading-relaxed mt-3">A local service team focused on practical scheduling and responsive communication.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Social -->
+      <section class="py-16 md:py-20 px-4 bg-navy text-white">
+        <div class="max-w-5xl mx-auto text-center">
+          <div class="w-16 h-16 rounded-2xl bg-mint text-navy flex items-center justify-center text-3xl mx-auto mb-6">
+            <i class="fa-solid fa-camera"></i>
+          </div>
+
+          <p class="text-mint uppercase tracking-widest text-xs font-extrabold mb-3">Follow Along</p>
+          <h2 class="text-3xl sm:text-4xl font-extrabold">Follow Our Family Journey</h2>
+          <p class="text-slate-300 max-w-2xl mx-auto mt-4 leading-relaxed">
+            Follow our projects, see our work, and connect with Zee Home Services LLC through our online profiles.
+          </p>
+
+          <div class="grid sm:grid-cols-3 gap-4 mt-9">
+            <a href="https://youtube.com/@zeehomeservices?si=7J5KoyimQtkkhYjF"
+               target="_blank" rel="noopener noreferrer"
+               class="social-button rounded-2xl bg-red-600 p-6 text-white text-left">
+              <i class="fa-brands fa-youtube text-3xl mb-4"></i>
+              <h3 class="font-extrabold text-lg">YouTube</h3>
+              <p class="text-sm text-white/80 mt-1">@zeehomeservices</p>
+              <span class="inline-block mt-5 text-sm font-bold">Watch our journey →</span>
+            </a>
+
+            <a href="https://facebook.com"
+               target="_blank" rel="noopener noreferrer"
+               class="social-button rounded-2xl bg-blue-600 p-6 text-white text-left">
+              <i class="fa-brands fa-facebook text-3xl mb-4"></i>
+              <h3 class="font-extrabold text-lg">Facebook</h3>
+              <p class="text-sm text-white/80 mt-1">Connect with us</p>
+              <span class="inline-block mt-5 text-sm font-bold">Visit Facebook →</span>
+            </a>
+
+            <a href="https://maps.app.goo.gl/3SrKrKDFjpmpw22Y9?g_st=ic"
+               target="_blank" rel="noopener noreferrer"
+               class="social-button rounded-2xl bg-white text-navy p-6 text-left">
+              <i class="fa-solid fa-map-location-dot text-3xl text-mint-deep mb-4"></i>
+              <h3 class="font-extrabold text-lg">Google Maps</h3>
+              <p class="text-sm text-slate-600 mt-1">Business profile and reviews</p>
+              <span class="inline-block mt-5 text-sm font-bold">View profile →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ======================================================
+         TAB 1: HANDYMAN SERVICES
+    ======================================================= -->
+    <section id="tab-handyman-content" class="hidden py-12 md:py-16 px-4">
+      <div class="max-w-7xl mx-auto">
+
+        <div class="max-w-3xl mb-10">
+          <p class="text-mint-deep uppercase tracking-widest text-xs font-extrabold mb-3">Our Services</p>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-navy">Handyman Services</h1>
+          <p class="text-slate-600 mt-4 leading-relaxed">
+            Choose a service to add it to your request. Listed prices are estimates for the described scope; materials and any additional work are separate unless explicitly agreed otherwise.
+          </p>
+          <div class="mt-5 inline-flex items-center gap-2 rounded-xl bg-mint-bg text-navy px-4 py-3 text-sm">
+            <i class="fa-solid fa-circle-info text-mint-deep"></i>
+            <span>Confirm the final scope and price before work begins.</span>
+          </div>
+        </div>
+
+        <div id="handyman-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Service 1 -->
+          <article class="service-card bg-white rounded-2xl border border-slate-200 p-6" id="card-gfci">
+            <div class="flex justify-between items-start gap-3">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl">
+                <i class="fa-solid fa-plug"></i>
+              </div>
+              <span class="text-2xl font-extrabold text-navy">$85</span>
+            </div>
+            <h2 class="font-extrabold text-lg text-navy mt-5">GFCI Outlet Replacement</h2>
+            <p class="text-xs text-slate-500 mt-2">Standard replacement at an existing compatible location.</p>
+            <div class="bg-surface rounded-xl p-4 mt-5 flex-1">
+              <h3 class="font-bold text-sm text-navy mb-3">
+                <i class="fa-solid fa-list-check text-mint-deep mr-2"></i>Included Step-by-Step
+              </h3>
+              <ul class="included-list space-y-2 text-sm text-slate-600">
+                <li>Turn off circuit power and verify de-energization</li>
+                <li>Remove the existing outlet</li>
+                <li>Connect the replacement GFCI correctly</li>
+                <li>Check Line/Load connections as applicable</li>
+                <li>Test GFCI operation</li>
+              </ul>
+            </div>
+            <button onclick="addToCart('GFCI Outlet Replacement',85,'card-gfci')"
+                    class="add-button mt-5 w-full rounded-xl bg-navy text-white font-bold py-3 px-4 hover:bg-mint hover:text-navy transition">
+              <i class="fa-solid fa-cart-plus mr-2"></i>+ Add to Order
+            </button>
+          </article>
+
+          <!-- Service 2 -->
+          <article class="service-card bg-white rounded-2xl border border-slate-200 p-6" id="card-smoke">
+            <div class="flex justify-between items-start gap-3">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl">
+                <i class="fa-solid fa-house-fire"></i>
+              </div>
+              <span class="text-2xl font-extrabold text-navy">$80</span>
+            </div>
+            <h2 class="font-extrabold text-lg text-navy mt-5">Smoke & CO Detector Install</h2>
+            <p class="text-xs text-slate-500 mt-2">Replacement at an existing compatible location.</p>
+            <div class="bg-surface rounded-xl p-4 mt-5 flex-1">
+              <h3 class="font-bold text-sm text-navy mb-3">
+                <i class="fa-solid fa-list-check text-mint-deep mr-2"></i>Included Step-by-Step
+              </h3>
+              <ul class="included-list space-y-2 text-sm text-slate-600">
+                <li>Remove the old compatible detector</li>
+                <li>Install the mounting plate</li>
+                <li>Connect the power plug or battery</li>
+                <li>Test the unit using its test function</li>
+                <li>Confirm the detector is secured</li>
+              </ul>
+            </div>
+            <button onclick="addToCart('Smoke & CO Detector Install',80,'card-smoke')"
+                    class="add-button mt-5 w-full rounded-xl bg-navy text-white font-bold py-3 px-4 hover:bg-mint hover:text-navy transition">
+              <i class="fa-solid fa-cart-plus mr-2"></i>+ Add to Order
+            </button>
+          </article>
+
+          <!-- Service 3 -->
+          <article class="service-card bg-white rounded-2xl border border-slate-200 p-6" id="card-doorbell">
+            <div class="flex justify-between items-start gap-3">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl">
+                <i class="fa-solid fa-video"></i>
+              </div>
+              <span class="text-2xl font-extrabold text-navy">$130</span>
+            </div>
+            <h2 class="font-extrabold text-lg text-navy mt-5">Smart Doorbell Installation</h2>
+            <p class="text-xs text-slate-500 mt-2">Compatible doorbell replacement and basic app setup.</p>
+            <div class="bg-surface rounded-xl p-4 mt-5 flex-1">
+              <h3 class="font-bold text-sm text-navy mb-3">
+                <i class="fa-solid fa-list-check text-mint-deep mr-2"></i>Included Step-by-Step
+              </h3>
+              <ul class="included-list space-y-2 text-sm text-slate-600">
+                <li>Remove the existing standard doorbell</li>
+                <li>Connect compatible low-voltage wires</li>
+                <li>Mount the new doorbell</li>
+                <li>Assist with app setup</li>
+                <li>Test the device and Wi-Fi connection</li>
+              </ul>
+            </div>
+            <button onclick="addToCart('Smart Doorbell Installation',130,'card-doorbell')"
+                    class="add-button mt-5 w-full rounded-xl bg-navy text-white font-bold py-3 px-4 hover:bg-mint hover:text-navy transition">
+              <i class="fa-solid fa-cart-plus mr-2"></i>+ Add to Order
+            </button>
+          </article>
+
+          <!-- Service 4 -->
+          <article class="service-card bg-white rounded-2xl border border-slate-200 p-6" id="card-disposal">
+            <div class="flex justify-between items-start gap-3">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl">
+                <i class="fa-solid fa-faucet-drip"></i>
+              </div>
+              <span class="text-2xl font-extrabold text-navy">$160</span>
+            </div>
+            <h2 class="font-extrabold text-lg text-navy mt-5">Garbage Disposal Replacement</h2>
+            <p class="text-xs text-slate-500 mt-2">Replacement at an existing compatible connection.</p>
+            <div class="bg-surface rounded-xl p-4 mt-5 flex-1">
+              <h3 class="font-bold text-sm text-navy mb-3">
+                <i class="fa-solid fa-list-check text-mint-deep mr-2"></i>Included Step-by-Step
+              </h3>
+              <ul class="included-list space-y-2 text-sm text-slate-600">
+                <li>Disconnect the drain and existing disposal</li>
+                <li>Remove the old unit</li>
+                <li>Install the replacement unit</li>
+                <li>Reconnect compatible drain connections</li>
+                <li>Check operation and visible leaks</li>
+              </ul>
+            </div>
+            <button onclick="addToCart('Garbage Disposal Replacement',160,'card-disposal')"
+                    class="add-button mt-5 w-full rounded-xl bg-navy text-white font-bold py-3 px-4 hover:bg-mint hover:text-navy transition">
+              <i class="fa-solid fa-cart-plus mr-2"></i>+ Add to Order
+            </button>
+          </article>
+
+          <!-- Service 5 -->
+          <article class="service-card bg-white rounded-2xl border border-slate-200 p-6" id="card-waterline">
+            <div class="flex justify-between items-start gap-3">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl">
+                <i class="fa-solid fa-droplet"></i>
+              </div>
+              <span class="text-2xl font-extrabold text-navy">$80</span>
+            </div>
+            <h2 class="font-extrabold text-lg text-navy mt-5">Flexible Water Line Swap</h2>
+            <p class="text-xs text-slate-500 mt-2">Accessible fixture supply line replacement.</p>
+            <div class="bg-surface rounded-xl p-4 mt-5 flex-1">
+              <h3 class="font-bold text-sm text-navy mb-3">
+                <i class="fa-solid fa-list-check text-mint-deep mr-2"></i>Included Step-by-Step
+              </h3>
+              <ul class="included-list space-y-2 text-sm text-slate-600">
+                <li>Shut off the water supply</li>
+                <li>Remove the old flexible line</li>
+                <li>Install a compatible stainless-steel braided line</li>
+                <li>Restore the water supply</li>
+                <li>Check connections under pressure for leaks</li>
+              </ul>
+            </div>
+            <button onclick="addToCart('Flexible Water Line Swap',80,'card-waterline')"
+                    class="add-button mt-5 w-full rounded-xl bg-navy text-white font-bold py-3 px-4 hover:bg-mint hover:text-navy transition">
+              <i class="fa-solid fa-cart-plus mr-2"></i>+ Add to Order
+            </button>
+          </article>
+
+          <!-- Service 6 -->
+          <article class="service-card bg-white rounded-2xl border border-slate-200 p-6" id="card-critter">
+            <div class="flex justify-between items-start gap-3">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl">
+                <i class="fa-solid fa-solar-panel"></i>
+              </div>
+              <span class="text-2xl font-extrabold text-navy">$350</span>
+            </div>
+            <h2 class="font-extrabold text-lg text-navy mt-5">Critter Guard Mesh Install</h2>
+            <p class="text-xs text-slate-500 mt-2">Protective mesh installation around accessible solar panels.</p>
+            <div class="bg-surface rounded-xl p-4 mt-5 flex-1">
+              <h3 class="font-bold text-sm text-navy mb-3">
+                <i class="fa-solid fa-list-check text-mint-deep mr-2"></i>Included Step-by-Step
+              </h3>
+              <ul class="included-list space-y-2 text-sm text-slate-600">
+                <li>Measure accessible panel perimeter</li>
+                <li>Cut protective mesh to fit</li>
+                <li>Secure mesh using compatible fasteners</li>
+                <li>Avoid drilling or damaging panels</li>
+                <li>Inspect visible attachment points</li>
+              </ul>
+              <p class="text-xs text-slate-500 mt-3">Roof access, roof condition and system layout may affect the final quote.</p>
+            </div>
+            <button onclick="addToCart('Critter Guard Mesh Install',350,'card-critter')"
+                    class="add-button mt-5 w-full rounded-xl bg-navy text-white font-bold py-3 px-4 hover:bg-mint hover:text-navy transition">
+              <i class="fa-solid fa-cart-plus mr-2"></i>+ Add to Order
+            </button>
+          </article>
+
+          <!-- Service 7 -->
+          <article class="service-card bg-white rounded-2xl border border-slate-200 p-6" id="card-faucet">
+            <div class="flex justify-between items-start gap-3">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl">
+                <i class="fa-solid fa-sink"></i>
+              </div>
+              <span class="text-2xl font-extrabold text-navy">$140</span>
+            </div>
+            <h2 class="font-extrabold text-lg text-navy mt-5">Kitchen / Bath Faucet Swap</h2>
+            <p class="text-xs text-slate-500 mt-2">Replacement of an accessible compatible faucet.</p>
+            <div class="bg-surface rounded-xl p-4 mt-5 flex-1">
+              <h3 class="font-bold text-sm text-navy mb-3">
+                <i class="fa-solid fa-list-check text-mint-deep mr-2"></i>Included Step-by-Step
+              </h3>
+              <ul class="included-list space-y-2 text-sm text-slate-600">
+                <li>Shut off hot and cold water supplies</li>
+                <li>Disconnect and remove the old faucet</li>
+                <li>Clean the mounting surface</li>
+                <li>Install the compatible replacement faucet</li>
+                <li>Reconnect lines and check for leaks</li>
+              </ul>
+            </div>
+            <button onclick="addToCart('Kitchen / Bath Faucet Swap',140,'card-faucet')"
+                    class="add-button mt-5 w-full rounded-xl bg-navy text-white font-bold py-3 px-4 hover:bg-mint hover:text-navy transition">
+              <i class="fa-solid fa-cart-plus mr-2"></i>+ Add to Order
+            </button>
+          </article>
+
+          <!-- Service 8 -->
+          <article class="service-card bg-white rounded-2xl border border-slate-200 p-6" id="card-fan">
+            <div class="flex justify-between items-start gap-3">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl">
+                <i class="fa-solid fa-fan"></i>
+              </div>
+              <span class="text-2xl font-extrabold text-navy">$150</span>
+            </div>
+            <h2 class="font-extrabold text-lg text-navy mt-5">Ceiling Fan & Light Fixture Swap</h2>
+            <p class="text-xs text-slate-500 mt-2">Standard replacement at an existing compatible box.</p>
+            <div class="bg-surface rounded-xl p-4 mt-5 flex-1">
+              <h3 class="font-bold text-sm text-navy mb-3">
+                <i class="fa-solid fa-list-check text-mint-deep mr-2"></i>Included Step-by-Step
+              </h3>
+              <ul class="included-list space-y-2 text-sm text-slate-600">
+                <li>Switch off the circuit breaker</li>
+                <li>Remove the existing fixture</li>
+                <li>Assemble the compatible replacement</li>
+                <li>Install using the appropriate mounting box</li>
+                <li>Test operation and check fan balance</li>
+              </ul>
+            </div>
+            <button onclick="addToCart('Ceiling Fan & Light Fixture Swap',150,'card-fan')"
+                    class="add-button mt-5 w-full rounded-xl bg-navy text-white font-bold py-3 px-4 hover:bg-mint hover:text-navy transition">
+              <i class="fa-solid fa-cart-plus mr-2"></i>+ Add to Order
+            </button>
+          </article>
+
+          <!-- Service 9 -->
+          <article class="service-card bg-white rounded-2xl border border-slate-200 p-6" id="card-toilet">
+            <div class="flex justify-between items-start gap-3">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl">
+                <i class="fa-solid fa-toilet"></i>
+              </div>
+              <span class="text-2xl font-extrabold text-navy">$110</span>
+            </div>
+            <h2 class="font-extrabold text-lg text-navy mt-5">Toilet Fill Valve & Flapper Repair</h2>
+            <p class="text-xs text-slate-500 mt-2">Tank component replacement for common running-toilet issues.</p>
+            <div class="bg-surface rounded-xl p-4 mt-5 flex-1">
+              <h3 class="font-bold text-sm text-navy mb-3">
+                <i class="fa-solid fa-list-check text-mint-deep mr-2"></i>Included Step-by-Step
+              </h3>
+              <ul class="included-list space-y-2 text-sm text-slate-600">
+                <li>Shut off water and drain the tank</li>
+                <li>Remove the old fill valve and flapper</li>
+                <li>Install compatible replacement components</li>
+                <li>Adjust the water level</li>
+                <li>Flush and check for proper operation</li>
+              </ul>
+            </div>
+            <button onclick="addToCart('Toilet Fill Valve & Flapper Repair',110,'card-toilet')"
+                    class="add-button mt-5 w-full rounded-xl bg-navy text-white font-bold py-3 px-4 hover:bg-mint hover:text-navy transition">
+              <i class="fa-solid fa-cart-plus mr-2"></i>+ Add to Order
+            </button>
+          </article>
+
+          <!-- Service 10 -->
+          <article class="service-card bg-white rounded-2xl border border-slate-200 p-6" id="card-tv">
+            <div class="flex justify-between items-start gap-3">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl">
+                <i class="fa-solid fa-tv"></i>
+              </div>
+              <span class="text-2xl font-extrabold text-navy">$120</span>
+            </div>
+            <h2 class="font-extrabold text-lg text-navy mt-5">TV Wall Mounting & Cable Hiding</h2>
+            <p class="text-xs text-slate-500 mt-2">Standard wall mount and surface cable management.</p>
+            <div class="bg-surface rounded-xl p-4 mt-5 flex-1">
+              <h3 class="font-bold text-sm text-navy mb-3">
+                <i class="fa-solid fa-list-check text-mint-deep mr-2"></i>Included Step-by-Step
+              </h3>
+              <ul class="included-list space-y-2 text-sm text-slate-600">
+                <li>Locate suitable wall studs</li>
+                <li>Position and mount the bracket</li>
+                <li>Securely mount the television</li>
+                <li>Organize cables with surface cable covers</li>
+                <li>Check alignment and stability</li>
+              </ul>
+              <p class="text-xs text-slate-500 mt-3">In-wall cable concealment and unusual wall construction are not included.</p>
+            </div>
+            <button onclick="addToCart('TV Wall Mounting & Cable Hiding',120,'card-tv')"
+                    class="add-button mt-5 w-full rounded-xl bg-navy text-white font-bold py-3 px-4 hover:bg-mint hover:text-navy transition">
+              <i class="fa-solid fa-cart-plus mr-2"></i>+ Add to Order
+            </button>
+          </article>
+
+        </div>
+
+        <div class="mt-10 rounded-2xl bg-navy text-white p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+          <div>
+            <h2 class="text-xl font-extrabold">Have a different repair in mind?</h2>
+            <p class="text-slate-300 text-sm mt-2">Tell us what needs attention and we can discuss the scope.</p>
+          </div>
+          <a href="mailto:zeehomservices@zeehomeservices.com?subject=Handyman%20Service%20Question"
+             class="shrink-0 rounded-xl bg-mint text-navy font-extrabold px-5 py-3 hover:bg-white transition">
+            <i class="fa-solid fa-envelope mr-2"></i>Ask About a Service
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+         TAB 2: TURNOVER & REPAIRS
+    ======================================================= -->
+    <section id="tab-turnover-content" class="hidden py-12 md:py-16 px-4">
+      <div class="max-w-7xl mx-auto">
+
+        <div class="max-w-3xl mb-10">
+          <p class="text-mint-deep uppercase tracking-widest text-xs font-extrabold mb-3">Property Maintenance</p>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-navy">Turnover & Repairs</h1>
+          <p class="text-slate-600 mt-4 leading-relaxed">
+            Practical help for homeowners, landlords, and property managers preparing a home or rental unit for its next occupant.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <article class="service-card bg-white rounded-2xl border border-slate-200 p-6" id="card-drywall">
+            <div class="flex justify-between items-start gap-3">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl">
+                <i class="fa-solid fa-paint-roller"></i>
+              </div>
+              <span class="text-2xl font-extrabold text-navy">$150</span>
+            </div>
+            <h2 class="font-extrabold text-xl text-navy mt-5">Drywall Patch & Touch-Up Paint</h2>
+            <p class="text-sm text-slate-600 mt-3 leading-relaxed">
+              Small drywall damage repair, surface preparation, patching, sanding, and touch-up paint where appropriate.
+            </p>
+            <div class="bg-surface rounded-xl p-4 mt-5 flex-1">
+              <h3 class="font-bold text-sm text-navy mb-3">Typical Scope</h3>
+              <ul class="included-list space-y-2 text-sm text-slate-600">
+                <li>Prepare a small damaged area</li>
+                <li>Apply patching compound</li>
+                <li>Sand after appropriate drying</li>
+                <li>Apply touch-up paint when color is available</li>
+                <li>Clean the immediate work area</li>
+              </ul>
+            </div>
+            <button onclick="addToCart('Drywall Patch & Touch-Up Paint',150,'card-drywall')"
+                    class="mt-5 w-full rounded-xl bg-navy text-white font-bold py-3 hover:bg-mint hover:text-navy transition">
+              <i class="fa-solid fa-cart-plus mr-2"></i>+ Add to Order
+            </button>
+          </article>
+
+          <article class="service-card bg-white rounded-2xl border border-slate-200 p-6" id="card-hardware">
+            <div class="flex justify-between items-start gap-3">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl">
+                <i class="fa-solid fa-door-open"></i>
+              </div>
+              <span class="text-2xl font-extrabold text-navy">$120</span>
+            </div>
+            <h2 class="font-extrabold text-xl text-navy mt-5">Door & Cabinet Hardware Swap</h2>
+            <p class="text-sm text-slate-600 mt-3 leading-relaxed">
+              Replace compatible existing handles, knobs, pulls, or standard door hardware.
+            </p>
+            <div class="bg-surface rounded-xl p-4 mt-5 flex-1">
+              <h3 class="font-bold text-sm text-navy mb-3">Typical Scope</h3>
+              <ul class="included-list space-y-2 text-sm text-slate-600">
+                <li>Remove existing compatible hardware</li>
+                <li>Check existing holes and mounting points</li>
+                <li>Install replacement hardware</li>
+                <li>Align and tighten fittings</li>
+                <li>Check opening and closing operation</li>
+              </ul>
+            </div>
+            <button onclick="addToCart('Door & Cabinet Hardware Swap',120,'card-hardware')"
+                    class="mt-5 w-full rounded-xl bg-navy text-white font-bold py-3 hover:bg-mint hover:text-navy transition">
+              <i class="fa-solid fa-cart-plus mr-2"></i>+ Add to Order
+            </button>
+          </article>
+
+          <article class="service-card bg-white rounded-2xl border border-slate-200 p-6" id="card-cleanprep">
+            <div class="flex justify-between items-start gap-3">
+              <div class="w-12 h-12 rounded-xl bg-mint-bg text-mint-deep flex items-center justify-center text-xl">
+                <i class="fa-solid fa-broom"></i>
+              </div>
+              <span class="text-2xl font-extrabold text-navy">$200</span>
+            </div>
+            <h2 class="font-extrabold text-xl text-navy mt-5">Move-Out Punch-List Clean & Prep</h2>
+            <p class="text-sm text-slate-600 mt-3 leading-relaxed">
+              Basic move-out cleaning and a visual preparation checklist for an accessible, reasonably cleared property.
+            </p>
+            <div class="bg-surface rounded-xl p-4 mt-5 flex-1">
+              <h3 class="font-bold text-sm text-navy mb-3">Typical Scope</h3>
+              <ul class="included-list space-y-2 text-sm text-slate-600">
+                <li>Review the requested punch list</li>
+                <li>Wipe accessible surfaces</li>
+                <li>Clean accessible floors</li>
+                <li>Remove ordinary surface dust</li>
+                <li>Report visible issues requiring follow-up</li>
+              </ul>
+              <p class="text-xs text-slate-500 mt-3">Heavy-duty cleaning, excessive debris and extensive repairs require a separate quote.</p>
+            </div>
+            <button onclick="addToCart('Move-Out Punch-List Clean & Prep',200,'card-cleanprep')"
+                    class="mt-5 w-full rounded-xl bg-navy text-white font-bold py-3 hover:bg-mint hover:text-navy transition">
+              <i class="fa-solid fa-cart-plus mr-2"></i>+ Add to Order
+            </button>
+          </article>
+
+        </div>
+
+        <section class="mt-12 rounded-3xl bg-navy text-white p-7 sm:p-10">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <p class="text-mint uppercase tracking-widest text-xs font-extrabold mb-3">For Property Managers</p>
+              <h2 class="text-2xl sm:text-3xl font-extrabold">One Property. A Clearer Punch List.</h2>
+              <p class="text-slate-300 mt-4 leading-relaxed">
+                Send us your list of repairs and preparation tasks. We can discuss the requested scope and identify work that needs a separate estimate.
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row md:flex-col gap-3">
+              <a href="mailto:zeehomservices@zeehomeservices.com?subject=Property%20Turnover%20Request"
+                 class="rounded-xl bg-mint text-navy font-extrabold text-center px-5 py-4 hover:bg-white transition">
+                <i class="fa-solid fa-envelope mr-2"></i>Request a Turnover Quote
+              </a>
+              <a href="tel:2792577429"
+                 class="rounded-xl border border-white/20 text-white font-bold text-center px-5 py-4 hover:bg-white/10 transition">
+                <i class="fa-solid fa-phone mr-2 text-mint"></i>Call (279) 257-7429
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ======================================================
+         TAB 3: PRICE CALCULATOR
+    ======================================================= -->
+    <section id="tab-calculator-content" class="hidden py-12 md:py-16 px-4">
+      <div class="max-w-5xl mx-auto">
+
+        <div class="mb-8">
+          <p class="text-mint-deep uppercase tracking-widest text-xs font-extrabold mb-3">Plan Your Project</p>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-navy">Price Calculator</h1>
+          <p class="text-slate-600 mt-4 leading-relaxed">
+            Select the services you are interested in to calculate an estimated total. This calculator uses the listed service prices and does not constitute a final quote.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+          <div class="bg-navy text-white p-6 sm:p-8">
+            <h2 class="text-xl font-extrabold">
+              <i class="fa-solid fa-calculator text-mint mr-2"></i>
+              Select Your Services
+            </h2>
+            <p class="text-sm text-slate-300 mt-2">Check the services you would like to include.</p>
+          </div>
+
+          <div class="p-4 sm:p-8">
+            <div id="calculator-list" class="space-y-3">
+
+              <label class="calc-row flex items-center gap-3 justify-between rounded-xl border border-slate-200 p-4 cursor-pointer hover:bg-surface transition">
+                <span class="flex items-start gap-3">
+                  <input type="checkbox" class="calc-item mt-1 accent-teal-700" value="85" data-title="GFCI Outlet Replacement" onchange="calcTotal()">
+                  <span class="font-semibold text-sm sm:text-base text-slate-700">GFCI Outlet Replacement</span>
+                </span>
+                <span class="font-extrabold text-navy shrink-0">$85</span>
+              </label>
+
+              <label class="calc-row flex items-center gap-3 justify-between rounded-xl border border-slate-200 p-4 cursor-pointer hover:bg-surface transition">
+                <span class="flex items-start gap-3">
+                  <input type="checkbox" class="calc-item mt-1 accent-teal-700" value="80" data-title="Smoke & CO Detector Install" onchange="calcTotal()">
+                  <span class="font-semibold text-sm sm:text-base text-slate-700">Smoke & CO Detector Install</span>
+                </span>
+                <span class="font-extrabold text-navy shrink-0">$80</span>
+              </label>
+
+              <label class="calc-row flex items-center gap-3 justify-between rounded-xl border border-slate-200 p-4 cursor-pointer hover:bg-surface transition">
+                <span class="flex items-start gap-3">
+                  <input type="checkbox" class="calc-item mt-1 accent-teal-700" value="130" data-title="Smart Doorbell Installation" onchange="calcTotal()">
+                  <span class="font-semibold text-sm sm:text-base text-slate-700">Smart Doorbell Installation</span>
+                </span>
+                <span class="font-extrabold text-navy shrink-0">$130</span>
+              </label>
+
+              <label class="calc-row flex items-center gap-3 justify-between rounded-xl border border-slate-200 p-4 cursor-pointer hover:bg-surface transition">
+                <span class="flex items-start gap-3">
+                  <input type="checkbox" class="calc-item mt-1 accent-teal-700" value="160" data-title="Garbage Disposal Replacement" onchange="calcTotal()">
+                  <span class="font-semibold text-sm sm:text-base text-slate-700">Garbage Disposal Replacement</span>
+                </span>
+                <span class="font-extrabold text-navy shrink-0">$160</span>
+              </label>
+
+              <label class="calc-row flex items-center gap-3 justify-between rounded-xl border border-slate-200 p-4 cursor-pointer hover:bg-surface transition">
+                <span class="flex items-start gap-3">
+                  <input type="checkbox" class="calc-item mt-1 accent-teal-700" value="80" data-title="Flexible Water Line Swap" onchange="calcTotal()">
+                  <span class="font-semibold text-sm sm:text-base text-slate-700">Flexible Water Line Swap</span>
+                </span>
+                <span class="font-extrabold text-navy shrink-0">$80</span>
+              </label>
+
+              <label class="calc-row flex items-center gap-3 justify-between rounded-xl border border-slate-200 p-4 cursor-pointer hover:bg-surface transition">
+                <span class="flex items-start gap-3">
+                  <input type="checkbox" class="calc-item mt-1 accent-teal-700" value="350" data-title="Critter Guard Mesh Install" onchange="calcTotal()">
+                  <span class="font-semibold text-sm sm:text-base text-slate-700">Critter Guard Mesh Install</span>
+                </span>
+                <span class="font-extrabold text-navy shrink-0">$350</span>
+              </label>
+
+              <label class="calc-row flex items-center gap-3 justify-between rounded-xl border border-slate-200 p-4 cursor-pointer hover:bg-surface transition">
+                <span class="flex items-start gap-3">
+                  <input type="checkbox" class="calc-item mt-1 accent-teal-700" value="140" data-title="Kitchen / Bath Faucet Swap" onchange="calcTotal()">
+                  <span class="font-semibold text-sm sm:text-base text-slate-700">Kitchen / Bath Faucet Swap</span>
+                </span>
+                <span class="font-extrabold text-navy shrink-0">$140</span>
+              </label>
+
+              <label class="calc-row flex items-center gap-3 justify-between rounded-xl border border-slate-200 p-4 cursor-pointer hover:bg-surface transition">
+                <span class="flex items-start gap-3">
+                  <input type="checkbox" class="calc-item mt-1 accent-teal-700" value="150" data-title="Ceiling Fan & Light Fixture Swap" onchange="calcTotal()">
+                  <span class="font-semibold text-sm sm:text-base text-slate-700">Ceiling Fan & Light Fixture Swap</span>
+                </span>
+                <span class="font-extrabold text-navy shrink-0">$150</span>
+              </label>
+
+              <label class="calc-row flex items-center gap-3 justify-between rounded-xl border border-slate-200 p-4 cursor-pointer hover:bg-surface transition">
+                <span class="flex items-start gap-3">
+                  <input type="checkbox" class="calc-item mt-1 accent-teal-700" value="110" data-title="Toilet Fill Valve & Flapper Repair" onchange="calcTotal()">
+                  <span class="font-semibold text-sm sm:text-base text-slate-700">Toilet Fill Valve & Flapper Repair</span>
+                </span>
+                <span class="font-extrabold text-navy shrink-0">$110</span>
+              </label>
+
+              <label class="calc-row flex items-center gap-3 justify-between rounded-xl border border-slate-200 p-4 cursor-pointer hover:bg-surface transition">
+                <span class="flex items-start gap-3">
+                  <input type="checkbox" class="calc-item mt-1 accent-teal-700" value="120" data-title="TV Wall Mounting & Cable Hiding" onchange="calcTotal()">
+                  <span class="font-semibold text-sm sm:text-base text-slate-700">TV Wall Mounting & Cable Hiding</span>
+                </span>
+                <span class="font-extrabold text-navy shrink-0">$120</span>
+              </label>
+
+              <label class="calc-row flex items-center gap-3 justify-between rounded-xl border border-slate-200 p-4 cursor-pointer hover:bg-surface transition">
+                <span class="flex items-start gap-3">
+                  <input type="checkbox" class="calc-item mt-1 accent-teal-700" value="150" data-title="Drywall Patch & Touch-Up Paint" onchange="calcTotal()">
+                  <span class="font-semibold text-sm sm:text-base text-slate-700">Drywall Patch & Touch-Up Paint</span>
+                </span>
+                <span class="font-extrabold text-navy shrink-0">$150</span>
+              </label>
+
+              <label class="calc-row flex items-center gap-3 justify-between rounded-xl border border-slate-200 p-4 cursor-pointer hover:bg-surface transition">
+                <span class="flex items-start gap-3">
+                  <input type="checkbox" class="calc-item mt-1 accent-teal-700" value="120" data-title="Door & Cabinet Hardware Swap" onchange="calcTotal()">
+                  <span class="font-semibold text-sm sm:text-base text-slate-700">Door & Cabinet Hardware Swap</span>
+                </span>
+                <span class="font-extrabold text-navy shrink-0">$120</span>
+              </label>
+
+              <label class="calc-row flex items-center gap-3 justify-between rounded-xl border border-slate-200 p-4 cursor-pointer hover:bg-surface transition">
+                <span class="flex items-start gap-3">
+                  <input type="checkbox" class="calc-item mt-1 accent-teal-700" value="200" data-title="Move-Out Punch-List Clean & Prep" onchange="calcTotal()">
+                  <span class="font-semibold text-sm sm:text-base text-slate-700">Move-Out Punch-List Clean & Prep</span>
+                </span>
+                <span class="font-extrabold text-navy shrink-0">$200</span>
+              </label>
+
+            </div>
+
+            <div class="border-t border-slate-200 mt-7 pt-6">
+              <div class="flex flex-wrap justify-between items-center gap-4">
+                <div>
+                  <p class="text-sm text-slate-500">Estimated Total</p>
+                  <p id="calc-count" class="text-xs text-slate-400 mt-1">0 services selected</p>
+                </div>
+                <p id="calc-result" class="text-4xl font-extrabold text-mint-deep">$0</p>
+              </div>
+
+              <div class="flex flex-col sm:flex-row gap-3 mt-6">
+                <button onclick="addCalculatorSelection()"
+                        class="flex-1 rounded-xl bg-navy text-white font-extrabold px-5 py-4 hover:bg-navy-light transition">
+                  <i class="fa-solid fa-basket-shopping text-mint mr-2"></i>
+                  Add Selected to Order
+                </button>
+
+                <button onclick="clearCalculator()"
+                        class="rounded-xl border border-slate-300 text-slate-600 font-bold px-5 py-4 hover:bg-slate-100 transition">
+                  Clear Selection
+                </button>
+              </div>
+
+              <p class="text-xs text-slate-500 mt-4 leading-relaxed">
+                Prices are estimates for the described scope. Materials, site conditions, access, and additional work may affect the final price.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================
+         GOOGLE REVIEWS / LOCATION SECTION
+    ======================================================= -->
+    <section class="bg-navy text-white py-14 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="rounded-3xl border border-white/10 bg-navy-light p-7 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+
+          <div class="text-center md:text-left">
+            <p class="text-mint uppercase tracking-widest text-xs font-extrabold mb-3">Find Us Online</p>
+            <h2 class="text-2xl sm:text-3xl font-extrabold">Connect with Zee Home Services</h2>
+
+            <div class="flex items-center justify-center md:justify-start gap-1 text-amber-400 mt-4 text-xl"
+                 aria-label="5 out of 5 stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <span class="text-white font-extrabold ml-2">5.0</span>
+            </div>
+
+            <p class="text-xs text-slate-400 mt-2">
+              Confirm the current rating and reviews on our Google Business Profile.
+            </p>
+
+            <p class="text-slate-300 text-sm mt-4 max-w-xl leading-relaxed">
+              Visit our Google profile for location information, customer feedback, and business updates.
+            </p>
+          </div>
+
+          <a href="https://maps.app.goo.gl/3SrKrKDFjpmpw22Y9?g_st=ic"
+             target="_blank" rel="noopener noreferrer"
+             class="shrink-0 rounded-xl bg-mint text-navy font-extrabold px-6 py-4 hover:bg-white transition text-center">
+            <i class="fa-brands fa-google mr-2"></i>
+            Google Business Profile
+            <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-sm"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================
+       FOOTER
+  ======================================================= -->
+  <footer class="bg-[#071426] text-white px-4 pt-12 pb-28">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-9">
+
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-11 h-11 rounded-xl bg-mint text-navy flex items-center justify-center text-xl">
+              <i class="fa-solid fa-house-chimney"></i>
+            </div>
+            <div>
+              <h2 class="font-extrabold text-lg">Zee Home Services LLC</h2>
+              <p class="text-xs text-slate-400">Practical Solutions. Smarter Homes.</p>
+            </div>
+          </div>
+
+          <p class="text-sm text-slate-400 leading-relaxed max-w-md">
+            Family-owned home services for homeowners and property managers in Rancho Cordova, Folsom, El Dorado Hills, Sacramento and surrounding areas.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-extrabold mb-4">Explore</h3>
+          <div class="space-y-3 text-sm text-slate-400">
+            <button onclick="switchTab('home')" class="block hover:text-mint transition">About Us & Home</button>
+            <button onclick="switchTab('handyman')" class="block hover:text-mint transition">Handyman Services</button>
+            <button onclick="switchTab('turnover')" class="block hover:text-mint transition">Turnover & Repairs</button>
+            <button onclick="switchTab('calculator')" class="block hover:text-mint transition">Price Calculator</button>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-extrabold mb-4">Contact Us</h3>
+          <div class="space-y-4 text-sm">
+            <a href="tel:2792577429" class="flex items-start gap-3 text-slate-300 hover:text-mint transition">
+              <i class="fa-solid fa-phone text-mint mt-1"></i>
+              <span>(279) 257-7429</span>
+            </a>
+
+            <a href="mailto:zeehomservices@zeehomeservices.com"
+               class="flex items-start gap-3 text-slate-300 hover:text-mint transition">
+              <i class="fa-solid fa-envelope text-mint mt-1"></i>
+              <span class="break-all">zeehomservices@zeehomeservices.com</span>
+            </a>
+
+            <a href="https://maps.app.goo.gl/3SrKrKDFjpmpw22Y9?g_st=ic"
+               target="_blank" rel="noopener noreferrer"
+               class="flex items-start gap-3 text-slate-300 hover:text-mint transition">
+              <i class="fa-solid fa-location-dot text-mint mt-1"></i>
+              <span>Google Maps Profile</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row gap-3 justify-between text-xs text-slate-500">
+        <p>© <span id="copyright-year">2026</span> Zee Home Services LLC. All rights reserved.</p>
+        <p>Serving Sacramento and surrounding communities.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================
+       STICKY CART BAR
+  ======================================================= -->
+  <div id="sticky-cart-bar"
+       class="sticky-cart fixed bottom-0 left-0 right-0 z-40 translate-y-full transition-transform duration-300">
+    <div class="bg-navy/95 backdrop-blur-xl border-t border-white/10 shadow-2xl">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+
+        <button onclick="openCart()" class="flex-1 min-w-0 text-left text-white">
+          <div class="flex items-center gap-2">
+            <span class="w-10 h-10 rounded-xl bg-mint text-navy flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-basket-shopping"></i>
+            </span>
+            <span class="min-w-0">
+              <span class="block font-extrabold text-sm">Your Service Request</span>
+              <span class="block text-xs text-slate-400">
+                <span id="sticky-item-count">0</span> item(s) selected
+              </span>
+            </span>
+          </div>
+        </button>
+
+        <div class="text-right shrink-0">
+          <p class="text-[10px] text-slate-400 uppercase tracking-wider">Estimated Total</p>
+          <p id="sticky-total-price" class="text-lg sm:text-xl font-extrabold text-mint">$0</p>
+        </div>
+
+        <button onclick="openCart()"
+                class="rounded-xl bg-mint text-navy font-extrabold text-sm px-4 py-3 hover:bg-white transition shrink-0">
+          View <span class="hidden sm:inline">Order</span>
+          <i class="fa-solid fa-arrow-right ml-1"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       CART DRAWER
+  ======================================================= -->
+  <div id="cart-modal" class="hidden fixed inset-0 z-50" aria-hidden="true">
+
+    <button onclick="closeCart()"
+            class="drawer-overlay absolute inset-0 w-full h-full bg-black/65 cursor-default"
+            aria-label="Close order panel"></button>
+
+    <aside id="cart-panel"
+           role="dialog"
+           aria-modal="true"
+           aria-labelledby="cart-title"
+           class="drawer-panel absolute right-0 top-0 bottom-0 w-full max-w-lg bg-white shadow-2xl flex flex-col translate-x-full">
+
+      <div class="bg-navy text-white p-5 sm:p-6 flex items-center justify-between gap-3">
+        <div>
+          <h2 id="cart-title" class="text-xl font-extrabold">
+            <i class="fa-solid fa-basket-shopping text-mint mr-2"></i>
+            Your Service Request
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">Review your selected services</p>
+        </div>
+
+        <button onclick="closeCart()"
+                class="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 transition"
+                aria-label="Close cart">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-4 sm:p-6">
+        <div id="cart-items-container" class="space-y-3">
+          <div class="text-center py-12 text-slate-400">
+            <i class="fa-solid fa-basket-shopping text-4xl mb-4"></i>
+            <p>Your request is currently empty.</p>
+            <p class="text-xs mt-2">Add a service to get started.</p>
+          </div>
+        </div>
+
+        <div class="mt-6 border-t border-slate-200 pt-5">
+          <label for="customer-notes" class="block text-sm font-bold text-navy mb-2">
+            Project Notes (Optional)
+          </label>
+          <textarea id="customer-notes"
+                    rows="3"
+                    maxlength="1500"
+                    placeholder="Describe your property, preferred schedule, or any details..."
+                    class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-mint-deep focus:ring-2 focus:ring-mint/30 outline-none resize-y"></textarea>
+        </div>
+
+        <div class="mt-5 rounded-xl bg-mint-bg p-4">
+          <div class="flex justify-between items-center gap-3">
+            <span class="text-sm font-semibold text-slate-600">Estimated Total</span>
+            <span id="drawer-total-price" class="text-2xl font-extrabold text-navy">$0</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-2">
+            This is an estimate, not a confirmed quote or booking. Materials and additional work may cost extra.
+          </p>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-200 p-4 sm:p-6 space-y-3 bg-white">
+        <a id="btn-email-order"
+           href="mailto:zeehomservices@zeehomeservices.com"
+           class="block text-center w-full rounded-xl bg-navy text-white font-extrabold px-5 py-4 hover:bg-navy-light transition">
+          <i class="fa-solid fa-envelope text-mint mr-2"></i>
+          Send Order via Email
+        </a>
+
+        <button onclick="closeCart()"
+                class="w-full rounded-xl border border-slate-300 text-slate-600 font-bold px-5 py-3 hover:bg-slate-50 transition">
+          Continue Browsing
+        </button>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- ======================================================
+       JAVASCRIPT
+  ======================================================= -->
+  <script>
+    'use strict';
+
+    const BUSINESS_EMAIL = 'zeehomservices@zeehomeservices.com';
+
+    const tabIds = {
+      home: 'tab-home-content',
+      handyman: 'tab-handyman-content',
+      turnover: 'tab-turnover-content',
+      calculator: 'tab-calculator-content'
+    };
+
+    const tabButtonIds = {
+      home: 'btn-home',
+      handyman: 'btn-handyman',
+      turnover: 'btn-turnover',
+      calculator: 'btn-calculator'
+    };
+
+    // Cart data lives in memory for this page session.
+    // Prices are estimates for the listed scope.
+    let cart = [];
+
+    function switchTab(tab) {
+      if (!Object.prototype.hasOwnProperty.call(tabIds, tab)) return;
+
+      Object.entries(tabIds).forEach(([key, id]) => {
+        document.getElementById(id).classList.toggle('hidden', key !== tab);
+      });
+
+      Object.entries(tabButtonIds).forEach(([key, id]) => {
+        const button = document.getElementById(id);
+        const active = key === tab;
+
+        button.classList.toggle('active', active);
+        button.classList.toggle('text-slate-300', !active);
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function formatMoney(value) {
+      return '$' + Number(value).toLocaleString('en-US', {
+        maximumFractionDigits: 2
+      });
+    }
+
+    function getCartTotals() {
+      return cart.reduce((totals, item) => {
+        totals.count += item.qty;
+        totals.price += item.price * item.qty;
+        return totals;
+      }, { count: 0, price: 0 });
+    }
+
+    function addToCart(title, price, cardId) {
+      const existing = cart.find(item => item.title === title);
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({
+          title: String(title),
+          price: Number(price),
+          qty: 1
+        });
+      }
+
+      updateCartUI();
+      animateAddToCart(cardId);
+      showCartFeedback(title);
+    }
+
+    function animateAddToCart(cardId) {
+      const card = document.getElementById(cardId);
+      const target = document.querySelector('#cart-badge');
+
+      if (!card || !target || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      const from = card.getBoundingClientRect();
+      const to = target.getBoundingClientRect();
+
+      const flyer = document.createElement('div');
+      flyer.className = 'flying-item w-11 h-11 rounded-full bg-mint text-navy shadow-xl flex items-center justify-center';
+      flyer.innerHTML = '<i class="fa-solid fa-basket-shopping"></i>';
+
+      flyer.style.left = (from.left + from.width / 2 - 22) + 'px';
+      flyer.style.top = (from.top + Math.min(from.height / 2, 150) - 22) + 'px';
+
+      document.body.appendChild(flyer);
+
+      // Force layout so the browser registers the initial position.
+      flyer.getBoundingClientRect();
+
+      const dx = to.left + to.width / 2 - (from.left + from.width / 2);
+      const dy = to.top + to.height / 2 - (from.top + Math.min(from.height / 2, 150));
+
+      flyer.style.transform = `translate(${dx}px, ${dy}px) scale(.25)`;
+      flyer.style.opacity = '0.1';
+
+      window.setTimeout(() => flyer.remove(), 750);
+    }
+
+    let feedbackTimeout;
+
+    function showCartFeedback(title) {
+      const badge = document.getElementById('cart-badge');
+      badge.title = title + ' added to order';
+
+      badge.classList.add('ring-4', 'ring-mint/30');
+
+      window.clearTimeout(feedbackTimeout);
+      feedbackTimeout = window.setTimeout(() => {
+        badge.classList.remove('ring-4', 'ring-mint/30');
+      }, 450);
+    }
+
+    function removeFromCart(index) {
+      if (index < 0 || index >= cart.length) return;
+
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function changeQty(index, delta) {
+      if (!cart[index]) return;
+
+      cart[index].qty += delta;
+
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const container = document.getElementById('cart-items-container');
+      const badge = document.getElementById('cart-badge');
+      const stickyBar = document.getElementById('sticky-cart-bar');
+      const totals = getCartTotals();
+
+      badge.textContent = totals.count;
+      document.getElementById('sticky-item-count').textContent = totals.count;
+      document.getElementById('sticky-total-price').textContent = formatMoney(totals.price);
+      document.getElementById('drawer-total-price').textContent = formatMoney(totals.price);
+
+      stickyBar.classList.toggle('translate-y-full', totals.count === 0);
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12 text-slate-400">
+            <i class="fa-solid fa-basket-shopping text-4xl mb-4"></i>
+            <p>Your request is currently empty.</p>
+            <p class="text-xs mt-2">Add a service to get started.</p>
+          </div>
+        `;
+      } else {
+        container.replaceChildren();
+
+        cart.forEach((item, index) => {
+          const row = document.createElement('div');
+          row.className = 'rounded-xl border border-slate-200 bg-surface p-4';
+
+          const top = document.createElement('div');
+          top.className = 'flex items-start justify-between gap-3';
+
+          const info = document.createElement('div');
+          info.className = 'min-w-0';
+
+          const title = document.createElement('p');
+          title.className = 'font-extrabold text-sm text-navy break-words';
+          title.textContent = item.title;
+
+          const price = document.createElement('p');
+          price.className = 'text-xs text-mint-deep font-semibold mt-2';
+          price.textContent = `${formatMoney(item.price)} × ${item.qty} = ${formatMoney(item.price * item.qty)}`;
+
+          info.append(title, price);
+
+          const remove = document.createElement('button');
+          remove.className = 'text-slate-400 hover:text-red-600 p-2 rounded-lg shrink-0';
+          remove.type = 'button';
+          remove.setAttribute('aria-label', 'Remove ' + item.title);
+          remove.innerHTML = '<i class="fa-solid fa-trash"></i>';
+          remove.addEventListener('click', () => removeFromCart(index));
+
+          top.append(info, remove);
+
+          const controls = document.createElement('div');
+          controls.className = 'flex items-center justify-between mt-4 pt-3 border-t border-slate-200';
+
+          const quantityLabel = document.createElement('span');
+          quantityLabel.className = 'text-xs text-slate-500';
+          quantityLabel.textContent = 'Quantity';
+
+          const quantityControls = document.createElement('div');
+          quantityControls.className = 'flex items-center gap-3';
+
+          const minus = document.createElement('button');
+          minus.type = 'button';
+          minus.className = 'w-9 h-9 rounded-lg bg-white border border-slate-200 font-bold hover:bg-slate-100';
+          minus.textContent = '−';
+          minus.setAttribute('aria-label', 'Decrease quantity');
+          minus.addEventListener('click', () => changeQty(index, -1));
+
+          const qty = document.createElement('span');
+          qty.className = 'font-extrabold text-navy min-w-4 text-center';
+          qty.textContent = item.qty;
+
+          const plus = document.createElement('button');
+          plus.type = 'button';
+          plus.className = 'w-9 h-9 rounded-lg bg-white border border-slate-200 font-bold hover:bg-slate-100';
+          plus.textContent = '+';
+          plus.setAttribute('aria-label', 'Increase quantity');
+          plus.addEventListener('click', () => changeQty(index, 1));
+
+          quantityControls.append(minus, qty, plus);
+          controls.append(quantityLabel, quantityControls);
+          row.append(top, controls);
+          container.appendChild(row);
+        });
+      }
+
+      updateEmailLink();
+    }
+
+    function updateEmailLink() {
+      const button = document.getElementById('btn-email-order');
+      const totals = getCartTotals();
+      const notes = document.getElementById('customer-notes').value.trim();
+
+      const subject = 'Service Request - Zee Home Services LLC';
+
+      const lines = [
+        'Hello Zee Home Services LLC,',
+        '',
+        'I would like to request a quote for the following services:',
+        ''
+      ];
+
+      if (cart.length === 0) {
+        lines.push('No services selected yet.');
+      } else {
+        cart.forEach(item => {
+          lines.push(
+            `${item.title} — ${item.qty} × ${formatMoney(item.price)} = ${formatMoney(item.price * item.qty)}`
+          );
+        });
+      }
+
+      lines.push('');
+      lines.push('Estimated Total: ' + formatMoney(totals.price));
+      lines.push('');
+      lines.push('Please contact me to confirm availability, scope, and the final price.');
+
+      if (notes) {
+        lines.push('');
+        lines.push('Project Notes:');
+        lines.push(notes);
+      }
+
+      lines.push('');
+      lines.push('Name:');
+      lines.push('Property Address:');
+      lines.push('Preferred Contact / Schedule:');
+
+      const body = lines.join('\n');
+
+      button.href =
+        'mailto:' + BUSINESS_EMAIL +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+    }
+
+    function openCart() {
+      const modal = document.getElementById('cart-modal');
+      const panel = document.getElementById('cart-panel');
+
+      modal.classList.remove('hidden');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('cart-open');
+
+      updateEmailLink();
+
+      requestAnimationFrame(() => {
+        panel.classList.remove('translate-x-full');
+      });
+
+      const closeButton = modal.querySelector('button[aria-label="Close cart"]');
+      if (closeButton) closeButton.focus();
+    }
+
+    function closeCart() {
+      const modal = document.getElementById('cart-modal');
+      const panel = document.getElementById('cart-panel');
+
+      panel.classList.add('translate-x-full');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('cart-open');
+
+      window.setTimeout(() => {
+        if (modal.getAttribute('aria-hidden') === 'true') {
+          modal.classList.add('hidden');
+        }
+      }, 320);
+    }
+
+    function calcTotal() {
+      const items = document.querySelectorAll('.calc-item');
+      let total = 0;
+      let count = 0;
+
+      items.forEach(item => {
+        if (item.checked) {
+          total += Number(item.value);
+          count += 1;
+        }
+      });
+
+      document.getElementById('calc-result').textContent = formatMoney(total);
+      document.getElementById('calc-count').textContent =
+        count + (count === 1 ? ' service selected' : ' services selected');
+
+      document.querySelectorAll('.calc-row').forEach(row => {
+        const checkbox = row.querySelector('.calc-item');
+        row.classList.toggle('border-mint-deep', checkbox.checked);
+        row.classList.toggle('bg-mint-bg', checkbox.checked);
+      });
+
+      return { total, count };
+    }
+
+    function addCalculatorSelection() {
+      const checked = Array.from(document.querySelectorAll('.calc-item:checked'));
+
+      if (checked.length === 0) {
+        alert('Please select at least one service first.');
+        return;
+      }
+
+      checked.forEach(input => {
+        addToCart(input.dataset.title, Number(input.value), 'tab-calculator-content');
+      });
+
+      openCart();
+    }
+
+    function clearCalculator() {
+      document.querySelectorAll('.calc-item').forEach(input => {
+        input.checked = false;
+      });
+
+      calcTotal();
+    }
+
+    // Refresh the email link when project notes change.
+    document.getElementById('customer-notes').addEventListener('input', updateEmailLink);
+
+    // Close drawer with Escape.
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        const modal = document.getElementById('cart-modal');
+        if (!modal.classList.contains('hidden')) closeCart();
+      }
+    });
+
+    // Update the copyright year automatically.
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+    // Initialize UI.
+    updateCartUI();
+    calcTotal();
+  </script>
+
+</body>
+</html>
