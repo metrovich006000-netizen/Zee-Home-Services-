@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zee Home Services LLC | Rancho Cordova, Folsom & Sacramento Handyman & Turnover Services</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0A192F',
+            'navy-light': '#112240',
+            gold: '#EAB308',
+            'gold-hover': '#CA8A04',
+            'gold-deep': '#D97706',
+            'gold-bg': '#FEF9C3'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Font & FontAwesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F8FAFC;
+      color: #1E293B;
+    }
+    .hero-bg {
+      background: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(17, 34, 64, 0.90) 100%),
+                  url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    }
+    .tab-btn.active {
+      background-color: #EAB308;
+      color: #0A192F;
+      font-weight: 700;
+    }
+    .flying-item {
+      position: fixed;
+      z-index: 9999;
+      pointer-events: none;
+      transition: all 0.8s ease-in-out;
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between text-slate-800 relative pb-20">
+
+  <!-- Top Bar Contact Info -->
+  <header class="sticky top-0 z-50 bg-navy text-white shadow-md border-b border-slate-700/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap justify-between items-center gap-3 text-xs sm:text-sm">
+      
+      <!-- Direct Action Phone & Email Links -->
+      <div class="flex flex-wrap items-center gap-4 sm:gap-6 font-medium">
+        <a href="tel:2792577429" class="flex items-center gap-2 hover:text-gold transition text-gold font-semibold">
+          <i class="fa-solid fa-phone text-xs"></i>
+          <span>(279) 257-7429</span>
+        </a>
+        <a href="mailto:zeehomservices@zeehomeservices.com" class="flex items-center gap-2 hover:text-gold transition text-slate-200">
+          <i class="fa-solid fa-envelope text-gold text-xs"></i>
+          <span>zeehomservices@zeehomeservices.com</span>
+        </a>
+      </div>
+
+      <!-- Social Media & Google Maps Links & Cart Trigger -->
+      <div class="flex items-center gap-4 text-slate-300">
+        <a href="https://maps.app.goo.gl/3SrKrKDFjpmpw22Y9?g_st=ic" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition flex items-center gap-1.5 text-xs bg-navy-light px-2.5 py-1 rounded-md border border-slate-700">
+          <i class="fa-solid fa-location-dot text-gold"></i>
+          <span class="hidden sm:inline">Google Reviews</span>
+        </a>
+        <a href="https://youtube.com/@zeehomeservices?si=7J5KoyimQtkkhYjF" target="_blank" rel="noopener noreferrer" class="hover:text-red-400 transition" title="YouTube Channel">
+          <i class="fa-brands fa-youtube text-base"></i>
+        </a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition" title="Facebook Page">
+          <i class="fa-brands fa-facebook-f text-sm"></i>
+        </a>
+
+        <!-- Cart Button Header Badge -->
+        <button onclick="toggleCartDrawer()" class="relative bg-gold text-navy font-bold px-3 py-1 rounded-lg flex items-center gap-2 text-xs hover:bg-gold-hover hover:text-white transition">
+          <i class="fa-solid fa-list-check"></i>
+          <span class="hidden sm:inline">Selected Services</span>
+          <span id="cart-badge-count" class="bg-navy text-gold text-xs px-1.5 py-0.5 rounded-full font-extrabold">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs Bar -->
+    <nav class="bg-navy-light border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex overflow-x-auto gap-2 py-2">
+        <button onclick="switchTab('home')" id="btn-home" class="tab-btn active px-4 py-2 rounded-xl text-xs sm:text-sm transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-house"></i> About Us & Home
+        </button>
+        <button onclick="switchTab('handyman')" id="btn-handyman" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm text-slate-300 hover:text-white transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-screwdriver-wrench"></i> Handyman Services (Labor Rates)
+        </button>
+        <button onclick="switchTab('turnover')" id="btn-turnover" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm text-slate-300 hover:text-white transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-house-chimney-window"></i> Turnover Packages (Basic vs Premium)
+        </button>
+        <button onclick="switchTab('calculator')" id="btn-calculator" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm text-slate-300 hover:text-white transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-clipboard-list"></i> Labor Estimator
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg text-white py-12 md:py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 bg-gold/10 border border-gold/30 text-gold px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
+          <i class="fa-solid fa-people-roof text-xs"></i> Family Owned & Operated LLC
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
+          Your Trusted Family Home Service Team
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Serving Rancho Cordova, Folsom, El Dorado Hills, and Sacramento with transparent handyman flat labor rates, basic & premium rental turnovers, and personal family care.
+        </p>
+
+        <!-- Call To Actions -->
+        <div class="flex flex-wrap gap-3 pt-2">
+          <a href="tel:2792577429" class="bg-gold text-navy font-bold hover:bg-gold-hover hover:text-white px-6 py-3.5 rounded-xl transition flex items-center gap-2 shadow-lg hover:shadow-gold/20">
+            <i class="fa-solid fa-phone"></i>
+            <span>Call (279) 257-7429</span>
+          </a>
+          <button onclick="switchTab('handyman')" class="bg-navy-light text-white font-medium hover:bg-slate-800 border border-slate-700 px-6 py-3.5 rounded-xl transition flex items-center gap-2">
+            <i class="fa-solid fa-screwdriver-wrench text-gold"></i>
+            <span>View Labor Pricing</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Contact Info Card -->
+      <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 sm:p-8 rounded-3xl text-white space-y-4 shadow-xl">
+        <h3 class="text-xl font-bold border-b border-white/10 pb-3 flex items-center justify-between">
+          <span>Zee Home Services LLC</span>
+          <i class="fa-solid fa-heart text-gold"></i>
+        </h3>
+        <div class="space-y-3 text-sm">
+          <div class="flex items-start gap-3">
+            <i class="fa-solid fa-phone text-gold mt-1"></i>
+            <div>
+              <p class="text-xs text-slate-300">Direct Line:</p>
+              <a href="tel:2792577429" class="font-bold text-base hover:underline text-white">(279) 257-7429</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i class="fa-solid fa-envelope text-gold mt-1"></i>
+            <div>
+              <p class="text-xs text-slate-300">Direct Email:</p>
+              <a href="mailto:zeehomservices@zeehomeservices.com" class="font-semibold text-sm hover:underline text-white break-all">zeehomservices@zeehomeservices.com</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <i class="fa-solid fa-map-location-dot text-gold mt-1"></i>
+            <div>
+              <p class="text-xs text-slate-300">Primary Region:</p>
+              <p class="font-medium text-sm text-slate-100">Rancho Cordova, Folsom & Surrounding Areas</p>
+            </div>
+          </div>
+        </div>
+        <div class="pt-2">
+          <a href="https://maps.app.goo.gl/3SrKrKDFjpmpw22Y9?g_st=ic" target="_blank" rel="noopener noreferrer" class="w-full bg-white/10 hover:bg-white/20 text-gold font-semibold py-2.5 px-4 rounded-xl transition border border-gold/30 flex items-center justify-center gap-2 text-xs">
+            <i class="fa-solid fa-star text-amber-400"></i>
+            <span>See Google Location & Reviews</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 0: HOME / ABOUT US PAGE -->
+  <main id="tab-home-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+    
+    <!-- About Us Family Story -->
+    <div class="bg-white rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm grid md:grid-cols-2 gap-8 items-center">
+      <div class="space-y-4">
+        <span class="text-xs font-extrabold text-gold-deep uppercase tracking-wider bg-gold-bg px-3.5 py-1.5 rounded-full border border-gold/20">
+          Our Family Story
+        </span>
+        <h2 class="text-3xl font-extrabold text-navy leading-tight">Welcome to Zee Home Services</h2>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          We are a dedicated, family-owned business serving our local community in Rancho Cordova, Folsom, El Dorado Hills, and the greater Sacramento area. We take pride in honest communication, clear pricing, clean workmanship, and treating every client's house like our own.
+        </p>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          Select any of our flat-rate handyman labor services or request a turnover quote below!
+        </p>
+        <div class="pt-2 flex flex-wrap gap-4">
+          <button onclick="switchTab('handyman')" class="bg-navy text-white text-xs font-bold px-5 py-3 rounded-xl hover:bg-navy-light transition flex items-center gap-2">
+            <i class="fa-solid fa-screwdriver-wrench text-gold"></i> View Handyman Labor Rates
+          </button>
+          <button onclick="switchTab('turnover')" class="bg-slate-100 text-navy text-xs font-bold px-5 py-3 rounded-xl hover:bg-slate-200 transition flex items-center gap-2 border border-slate-200">
+            <i class="fa-solid fa-house-chimney-window"></i> View Turnover Packages
+          </button>
+        </div>
+      </div>
+
+      <!-- Social Media & Video Highlight Card -->
+      <div class="bg-slate-900 rounded-3xl p-6 sm:p-8 text-white space-y-6 border border-slate-800">
+        <h3 class="text-xl font-bold text-gold flex items-center gap-2">
+          <i class="fa-solid fa-photo-film"></i> Follow Our Family Journey
+        </h3>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Check out our recent work, home repair tips, and project walkthroughs on our official social channels!
+        </p>
+
+        <!-- Social Buttons -->
+        <div class="space-y-3 pt-2">
+          <a href="https://youtube.com/@zeehomeservices?si=7J5KoyimQtkkhYjF" target="_blank" rel="noopener noreferrer" class="w-full bg-red-600/90 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-2xl transition flex items-center justify-between text-xs">
+            <span class="flex items-center gap-3">
+              <i class="fa-brands fa-youtube text-lg"></i>
+              <span>Watch Us on YouTube (@zeehomeservices)</span>
+            </span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-full bg-blue-600/90 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-2xl transition flex items-center justify-between text-xs">
+            <span class="flex items-center gap-3">
+              <i class="fa-brands fa-facebook-f text-lg"></i>
+              <span>Connect on Facebook</span>
+            </span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+          <a href="https://maps.app.goo.gl/3SrKrKDFjpmpw22Y9?g_st=ic" target="_blank" rel="noopener noreferrer" class="w-full bg-navy-light hover:bg-slate-800 text-gold border border-gold/30 font-bold py-3 px-4 rounded-2xl transition flex items-center justify-between text-xs">
+            <span class="flex items-center gap-3">
+              <i class="fa-solid fa-location-dot text-lg"></i>
+              <span>View Google Business Profile & Map</span>
+            </span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features / Why Choose Us Grid -->
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-3xl border border-slate-200 space-y-3">
+        <div class="w-10 h-10 bg-gold-bg rounded-xl flex items-center justify-center text-gold-deep font-bold">
+          <i class="fa-solid fa-handshake text-lg"></i>
+        </div>
+        <h3 class="font-bold text-navy">Direct Family Quality</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">No middleman or unverified contractors. You work directly with our family business team.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-3xl border border-slate-200 space-y-3">
+        <div class="w-10 h-10 bg-gold-bg rounded-xl flex items-center justify-center text-gold-deep font-bold">
+          <i class="fa-solid fa-tag text-lg"></i>
+        </div>
+        <h3 class="font-bold text-navy">Flat-Rate Labor Pricing</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">Upfront labor pricing for standard handyman jobs so there are no surprises on your invoice.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-3xl border border-slate-200 space-y-3">
+        <div class="w-10 h-10 bg-gold-bg rounded-xl flex items-center justify-center text-gold-deep font-bold">
+          <i class="fa-solid fa-clock text-lg"></i>
+        </div>
+        <h3 class="font-bold text-navy">Prompt Local Response</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">Locally based in Rancho Cordova, giving quick service to Folsom, El Dorado Hills, and Sacramento.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- TAB 1: Complete Handyman Services Section -->
+  <main id="tab-handyman-content" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="text-xs font-extrabold text-gold-deep uppercase tracking-wider bg-gold-bg px-3.5 py-1.5 rounded-full border border-gold/20">
+        Handyman Services & Labor Rates
+      </span>
+      <h2 class="text-3xl font-extrabold text-navy">Flat-Rate Handyman Labor Rates</h2>
+      <p class="text-slate-600 text-sm sm:text-base">
+        Click <strong class="text-navy">"+ Add Service"</strong> to calculate your estimated total labor cost! Every service includes a detailed step-by-step scope breakdown.
+      </p>
+      <!-- Clear Labor Only Banner -->
+      <div class="inline-flex items-center gap-2 bg-slate-900 text-gold px-4 py-2 rounded-xl text-xs font-bold border border-slate-700 shadow-sm mt-2">
+        <i class="fa-solid fa-circle-info text-amber-400"></i>
+        <span>Important Note: All prices listed represent <strong>LABOR ONLY</strong>. Parts and materials are provided by the client or billed at exact cost with receipt.</span>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Item 1: Standard Electrical Outlet ($75) -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" id="card-1">
+        <div class="space-y-3">
+          <div class="flex justify-between items-start">
+            <div class="w-12 h-12 bg-gold-bg rounded-2xl flex items-center justify-center text-gold-deep text-xl font-bold">
+              <i class="fa-solid fa-plug-circle-bolt text-lg"></i>
+            </div>
+            <div class="text-right">
+              <span class="text-xl font-extrabold text-navy bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">$75</span>
+              <p class="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">Labor Only / Outlet</p>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-navy">Standard Electrical Outlet Replacement</h3>
+          
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs space-y-2 text-slate-700">
+            <p class="font-bold text-navy flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-gold-deep"></i> Included Step-by-Step Scope:
+            </p>
+            <ul class="space-y-1.5 list-disc list-inside text-slate-600">
+              <li>Power shutoff & circuit safety test</li>
+              <li>Unmounting old receptacle & wall plate</li>
+              <li>Inspecting & wiring new standard outlet</li>
+              <li>Re-securing, faceplate installation & voltage test</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('Standard Electrical Outlet Replacement', 75, 'card-1')" class="w-full bg-navy text-white hover:bg-gold hover:text-navy font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Service ($75 Labor)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 2: Light Switch / Wall Switch ($65) -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" id="card-2">
+        <div class="space-y-3">
+          <div class="flex justify-between items-start">
+            <div class="w-12 h-12 bg-gold-bg rounded-2xl flex items-center justify-center text-gold-deep text-xl font-bold">
+              <i class="fa-solid fa-toggle-on text-lg"></i>
+            </div>
+            <div class="text-right">
+              <span class="text-xl font-extrabold text-navy bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">$65</span>
+              <p class="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">Labor Only / Switch</p>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-navy">Light Switch / Toggle Replacement</h3>
+          
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs space-y-2 text-slate-700">
+            <p class="font-bold text-navy flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-gold-deep"></i> Included Step-by-Step Scope:
+            </p>
+            <ul class="space-y-1.5 list-disc list-inside text-slate-600">
+              <li>Disconnecting breaker power & verifying dead lines</li>
+              <li>Removing worn switch mechanism & trim plate</li>
+              <li>Wiring new 1-way, 3-way, or dimmer toggle switch</li>
+              <li>Mounting wall box, plate, and cycle testing switch</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('Light Switch / Toggle Replacement', 65, 'card-2')" class="w-full bg-navy text-white hover:bg-gold hover:text-navy font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Service ($65 Labor)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 3: GFCI Outlet ($85) -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" id="card-3">
+        <div class="space-y-3">
+          <div class="flex justify-between items-start">
+            <div class="w-12 h-12 bg-gold-bg rounded-2xl flex items-center justify-center text-gold-deep text-xl font-bold">
+              <i class="fa-solid fa-plug text-lg"></i>
+            </div>
+            <div class="text-right">
+              <span class="text-xl font-extrabold text-navy bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">$85</span>
+              <p class="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">Labor Only / Outlet</p>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-navy">GFCI Outlet Replacement</h3>
+          
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs space-y-2 text-slate-700">
+            <p class="font-bold text-navy flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-gold-deep"></i> Included Step-by-Step Scope:
+            </p>
+            <ul class="space-y-1.5 list-disc list-inside text-slate-600">
+              <li>Shutting off circuit power & line/load voltage check</li>
+              <li>Demounting existing outlet & wall faceplate</li>
+              <li>Wiring new safety GFCI outlet (Line vs Load configuration)</li>
+              <li>Installing faceplate, trip testing, and reset verification</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('GFCI Outlet Replacement', 85, 'card-3')" class="w-full bg-navy text-white hover:bg-gold hover:text-navy font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Service ($85 Labor)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 4: Smoke & CO Detector ($80) -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" id="card-4">
+        <div class="space-y-3">
+          <div class="flex justify-between items-start">
+            <div class="w-12 h-12 bg-gold-bg rounded-2xl flex items-center justify-center text-gold-deep text-xl font-bold">
+              <i class="fa-solid fa-bell font-bold"></i>
+            </div>
+            <div class="text-right">
+              <span class="text-xl font-extrabold text-navy bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">$80</span>
+              <p class="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">Labor Only / Unit</p>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-navy">Smoke & CO Detector Installation</h3>
+          
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs space-y-2 text-slate-700">
+            <p class="font-bold text-navy flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-gold-deep"></i> Included Step-by-Step Scope:
+            </p>
+            <ul class="space-y-1.5 list-disc list-inside text-slate-600">
+              <li>Removing expired alarm unit & bracket plate</li>
+              <li>Anchoring heavy-duty ceiling mounting ring</li>
+              <li>Connecting wire harness or inserting 10-year battery</li>
+              <li>Audible sensor alarm & battery safety test</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('Smoke & CO Detector Installation', 80, 'card-4')" class="w-full bg-navy text-white hover:bg-gold hover:text-navy font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Service ($80 Labor)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 5: Smart Doorbell ($130) -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" id="card-5">
+        <div class="space-y-3">
+          <div class="flex justify-between items-start">
+            <div class="w-12 h-12 bg-gold-bg rounded-2xl flex items-center justify-center text-gold-deep text-xl font-bold">
+              <i class="fa-solid fa-video"></i>
+            </div>
+            <div class="text-right">
+              <span class="text-xl font-extrabold text-navy bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">$130</span>
+              <p class="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">Labor Only / Doorbell</p>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-navy">Smart Doorbell Installation</h3>
+          
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs space-y-2 text-slate-700">
+            <p class="font-bold text-navy flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-gold-deep"></i> Included Step-by-Step Scope:
+            </p>
+            <ul class="space-y-1.5 list-disc list-inside text-slate-600">
+              <li>Removing existing standard chime doorbell button</li>
+              <li>Connecting video doorbell low-voltage leads</li>
+              <li>Mounting wall bracket & angled corner wedge</li>
+              <li>App configuration setup & Wi-Fi sync testing</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('Smart Doorbell Installation', 130, 'card-5')" class="w-full bg-navy text-white hover:bg-gold hover:text-navy font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Service ($130 Labor)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 6: Toilet Replacement ($250) -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" id="card-6">
+        <div class="space-y-3">
+          <div class="flex justify-between items-start">
+            <div class="w-12 h-12 bg-gold-bg rounded-2xl flex items-center justify-center text-gold-deep text-xl font-bold">
+              <i class="fa-solid fa-toilet"></i>
+            </div>
+            <div class="text-right">
+              <span class="text-xl font-extrabold text-navy bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">$250</span>
+              <p class="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">Labor Only / Toilet</p>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-navy">Full Toilet Replacement</h3>
+          
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs space-y-2 text-slate-700">
+            <p class="font-bold text-navy flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-gold-deep"></i> Included Step-by-Step Scope:
+            </p>
+            <ul class="space-y-1.5 list-disc list-inside text-slate-600">
+              <li>Shutting supply, draining tank/bowl & pulling old toilet</li>
+              <li>Inspecting flange, removing old wax seal & installing new ring</li>
+              <li>Setting new porcelain bowl, tank assembly & bolt anchoring</li>
+              <li>Hooking up line, fill testing, and anti-mold base caulking</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('Full Toilet Replacement', 250, 'card-6')" class="w-full bg-navy text-white hover:bg-gold hover:text-navy font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Service ($250 Labor)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 7: Toilet Repair ($110) -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" id="card-7">
+        <div class="space-y-3">
+          <div class="flex justify-between items-start">
+            <div class="w-12 h-12 bg-gold-bg rounded-2xl flex items-center justify-center text-gold-deep text-xl font-bold">
+              <i class="fa-solid fa-wrench"></i>
+            </div>
+            <div class="text-right">
+              <span class="text-xl font-extrabold text-navy bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">$110</span>
+              <p class="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">Labor Only / Repair</p>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-navy">Toilet Repair & Fill Valve Swap</h3>
+          
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs space-y-2 text-slate-700">
+            <p class="font-bold text-navy flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-gold-deep"></i> Included Step-by-Step Scope:
+            </p>
+            <ul class="space-y-1.5 list-disc list-inside text-slate-600">
+              <li>Draining toilet tank & shutting main supply line</li>
+              <li>Removing worn fill valve mechanism & leaky flapper</li>
+              <li>Installing high-efficiency fill valve & seal flapper</li>
+              <li>Adjusting water float level, fill line & leak check</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('Toilet Repair & Fill Valve Swap', 110, 'card-7')" class="w-full bg-navy text-white hover:bg-gold hover:text-navy font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Service ($110 Labor)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 8: Garbage Disposal ($160) -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" id="card-8">
+        <div class="space-y-3">
+          <div class="flex justify-between items-start">
+            <div class="w-12 h-12 bg-gold-bg rounded-2xl flex items-center justify-center text-gold-deep text-xl font-bold">
+              <i class="fa-solid fa-faucet-drip"></i>
+            </div>
+            <div class="text-right">
+              <span class="text-xl font-extrabold text-navy bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">$160</span>
+              <p class="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">Labor Only / Unit</p>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-navy">Garbage Disposal Replacement</h3>
+          
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs space-y-2 text-slate-700">
+            <p class="font-bold text-navy flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-gold-deep"></i> Included Step-by-Step Scope:
+            </p>
+            <ul class="space-y-1.5 list-disc list-inside text-slate-600">
+              <li>Disconnecting drain plumbing & old electrical line</li>
+              <li>Demounting old disposal hardware & cleaning sink flange</li>
+              <li>Mounting & locking new heavy-duty disposal unit</li>
+              <li>Reconnecting plumbing lines, knockout plug & leak testing</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('Garbage Disposal Replacement', 160, 'card-8')" class="w-full bg-navy text-white hover:bg-gold hover:text-navy font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Service ($160 Labor)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 9: Water Hose Swap ($80) -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" id="card-9">
+        <div class="space-y-3">
+          <div class="flex justify-between items-start">
+            <div class="w-12 h-12 bg-gold-bg rounded-2xl flex items-center justify-center text-gold-deep text-xl font-bold">
+              <i class="fa-solid fa-water"></i>
+            </div>
+            <div class="text-right">
+              <span class="text-xl font-extrabold text-navy bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">$80</span>
+              <p class="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">Labor Only / Line</p>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-navy">Flexible Water Line Swap</h3>
+          
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs space-y-2 text-slate-700">
+            <p class="font-bold text-navy flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-gold-deep"></i> Included Step-by-Step Scope:
+            </p>
+            <ul class="space-y-1.5 list-disc list-inside text-slate-600">
+              <li>Shutting off shutoff supply valves</li>
+              <li>Removing worn or corroded flexible connector hoses</li>
+              <li>Installing high-grade stainless steel braided line</li>
+              <li>Pressurizing lines & verifying zero drips/leaks</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('Flexible Water Line Swap', 80, 'card-9')" class="w-full bg-navy text-white hover:bg-gold hover:text-navy font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Service ($80 Labor)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 10: Faucet Replacement ($140) -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" id="card-10">
+        <div class="space-y-3">
+          <div class="flex justify-between items-start">
+            <div class="w-12 h-12 bg-gold-bg rounded-2xl flex items-center justify-center text-gold-deep text-xl font-bold">
+              <i class="fa-solid fa-faucet"></i>
+            </div>
+            <div class="text-right">
+              <span class="text-xl font-extrabold text-navy bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">$140</span>
+              <p class="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">Labor Only / Fixture</p>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-navy">Kitchen & Bath Faucet Replacement</h3>
+          
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs space-y-2 text-slate-700">
+            <p class="font-bold text-navy flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-gold-deep"></i> Included Step-by-Step Scope:
+            </p>
+            <ul class="space-y-1.5 list-disc list-inside text-slate-600">
+              <li>Shutting off water valves & disconnecting supply lines</li>
+              <li>Demounting old faucet fixture & scraping old sealant</li>
+              <li>Installing new faucet body, gasket, and trim deck plate</li>
+              <li>Reconnecting lines, flushing lines & pressure leak test</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('Kitchen & Bath Faucet Replacement', 140, 'card-10')" class="w-full bg-navy text-white hover:bg-gold hover:text-navy font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Service ($140 Labor)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 11: Ceiling Fan / Light Fixture ($150) -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" id="card-11">
+        <div class="space-y-3">
+          <div class="flex justify-between items-start">
+            <div class="w-12 h-12 bg-gold-bg rounded-2xl flex items-center justify-center text-gold-deep text-xl font-bold">
+              <i class="fa-solid fa-fan"></i>
+            </div>
+            <div class="text-right">
+              <span class="text-xl font-extrabold text-navy bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">$150</span>
+              <p class="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">Labor Only / Fixture</p>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-navy">Ceiling Fan & Light Fixture Replacement</h3>
+          
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs space-y-2 text-slate-700">
+            <p class="font-bold text-navy flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-gold-deep"></i> Included Step-by-Step Scope:
+            </p>
+            <ul class="space-y-1.5 list-disc list-inside text-slate-600">
+              <li>Cutting power at main panel & safety wire testing</li>
+              <li>Dismounting existing light fixture or ceiling fan</li>
+              <li>Assembling motor, blades, or fixture canopy</li>
+              <li>Anchoring to junction box, wiring & balancing blades</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('Ceiling Fan & Light Fixture Replacement', 150, 'card-11')" class="w-full bg-navy text-white hover:bg-gold hover:text-navy font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Service ($150 Labor)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 12: TV Wall Mount ($120) -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" id="card-12">
+        <div class="space-y-3">
+          <div class="flex justify-between items-start">
+            <div class="w-12 h-12 bg-gold-bg rounded-2xl flex items-center justify-center text-gold-deep text-xl font-bold">
+              <i class="fa-solid fa-tv"></i>
+            </div>
+            <div class="text-right">
+              <span class="text-xl font-extrabold text-navy bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">$120</span>
+              <p class="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">Labor Only / Mount</p>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-navy">TV Wall Mounting & Cable Hiding</h3>
+          
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs space-y-2 text-slate-700">
+            <p class="font-bold text-navy flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-gold-deep"></i> Included Step-by-Step Scope:
+            </p>
+            <ul class="space-y-1.5 list-disc list-inside text-slate-600">
+              <li>Scanning studs & calculating optimal viewing level</li>
+              <li>Lag-bolting heavy steel bracket into wood/metal studs</li>
+              <li>Attaching VESA mounting arms to back of TV</li>
+              <li>Hanging TV, levelling check & installing surface raceway</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('TV Wall Mounting & Cable Hiding', 120, 'card-12')" class="w-full bg-navy text-white hover:bg-gold hover:text-navy font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Service ($120 Labor)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 13: Critter Guard ($350) -->
+      <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between" id="card-13">
+        <div class="space-y-3">
+          <div class="flex justify-between items-start">
+            <div class="w-12 h-12 bg-gold-bg rounded-2xl flex items-center justify-center text-gold-deep text-xl font-bold">
+              <i class="fa-solid fa-shield-cat"></i>
+            </div>
+            <div class="text-right">
+              <span class="text-xl font-extrabold text-navy bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">$350</span>
+              <p class="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">Labor Base Rate</p>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-navy">Critter Guard Mesh Installation</h3>
+          
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs space-y-2 text-slate-700">
+            <p class="font-bold text-navy flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-gold-deep"></i> Included Step-by-Step Scope:
+            </p>
+            <ul class="space-y-1.5 list-disc list-inside text-slate-600">
+              <li>Inspecting solar panel perimeter & clearing debris</li>
+              <li>Custom cutting weather-proof coated wire mesh</li>
+              <li>Clamping mesh firmly to panel frames without drilling</li>
+              <li>Seamless corner seals & final gap inspection</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('Critter Guard Mesh Installation', 350, 'card-13')" class="w-full bg-navy text-white hover:bg-gold hover:text-navy font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Service ($350 Base Labor)</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- TAB 2: Rental Turnover Packages (Basic vs Premium Modules - Free Estimates) -->
+  <main id="tab-turnover-content" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="text-xs font-extrabold text-gold-deep uppercase tracking-wider bg-gold-bg px-3.5 py-1.5 rounded-full border border-gold/20">
+        Move-In / Move-Out Rental Turnovers
+      </span>
+      <h2 class="text-3xl font-extrabold text-navy">Turnover Packages: Basic vs. Premium</h2>
+      <p class="text-slate-600 text-sm sm:text-base">
+        Turnover labor depends on square footage and property condition. Select between our <strong>Basic</strong> and <strong>Premium</strong> turnover modules to request a customized free estimate!
+      </p>
+    </div>
+
+    <!-- Clean Two-Module Framework: Basic vs Premium -->
+    <div class="grid md:grid-cols-2 gap-8 items-stretch">
+
+      <!-- MODULE 1: BASIC TURNOVER PACKAGE -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border-2 border-slate-200 shadow-sm hover:shadow-md transition space-y-6 flex flex-col justify-between" id="card-turnover-basic">
+        <div class="space-y-5">
+          <div class="flex justify-between items-start border-b border-slate-100 pb-4">
+            <div>
+              <span class="bg-amber-100 text-amber-900 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                Module 1
+              </span>
+              <h3 class="text-2xl font-extrabold text-navy mt-2">Basic Turnover Package</h3>
+              <p class="text-xs text-slate-500 mt-0.5">Quick cosmetic refresh & punch-list fix</p>
+            </div>
+            <div class="text-right">
+              <span class="text-sm font-extrabold text-navy bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">Free Estimate</span>
+            </div>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Designed for properties in solid structural condition that need fast turnaround, minor wall patch touch-ups, hardware tightening, and basic safety inspection.
+          </p>
+
+          <div class="bg-amber-50/60 p-5 rounded-2xl border border-amber-200/60 space-y-3">
+            <h4 class="font-bold text-navy text-xs uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-list-check text-gold-deep"></i> Included Package Scope:
+            </h4>
+            <ul class="space-y-2 text-xs text-slate-700">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-gold-deep mt-0.5"></i>
+                <span><strong>Wall Touch-Ups & Patching:</strong> Filling nail holes, repairing small drywall dents, and spot painting scuffs.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-gold-deep mt-0.5"></i>
+                <span><strong>Hardware & Fitting Check:</strong> Tightening loose door knobs, cabinet hinges, and securing towel racks/holders.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-gold-deep mt-0.5"></i>
+                <span><strong>Move-Out Punch-List:</strong> Replacing burnt light bulbs, outlet covers, and testing smoke/CO detector batteries.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('Basic Turnover Package', 0, 'card-turnover-basic')" class="w-full bg-navy text-white hover:bg-gold hover:text-navy font-bold py-3 px-4 rounded-xl transition flex items-center justify-center gap-2 text-sm shadow-md">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Basic Package to Quote Request</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- MODULE 2: PREMIUM TURNOVER PACKAGE -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border-2 border-gold/60 shadow-lg hover:shadow-xl transition space-y-6 flex flex-col justify-between relative overflow-hidden" id="card-turnover-premium">
+        <div class="absolute top-0 right-0 bg-gold text-navy font-extrabold text-[10px] px-4 py-1.5 rounded-bl-2xl uppercase tracking-wider shadow-sm">
+          Recommended
+        </div>
+
+        <div class="space-y-5">
+          <div class="flex justify-between items-start border-b border-slate-100 pb-4">
+            <div>
+              <span class="bg-navy text-gold text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                Module 2
+              </span>
+              <h3 class="text-2xl font-extrabold text-navy mt-2">Premium Turnover Package</h3>
+              <p class="text-xs text-slate-500 mt-0.5">Full renovation & flooring makeover</p>
+            </div>
+            <div class="text-right">
+              <span class="text-sm font-extrabold text-navy bg-gold/20 border border-gold px-3 py-1 rounded-full">Free Estimate</span>
+            </div>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Full transformation for units between tenants: complete full-wall repaint, baseboard replacement, new flooring/LVP installation, fixture upgrades, and detailed caulking.
+          </p>
+
+          <div class="bg-slate-900 text-white p-5 rounded-2xl border border-slate-800 space-y-3">
+            <h4 class="font-bold text-gold text-xs uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-crown text-amber-400"></i> Included Package Scope:
+            </h4>
+            <ul class="space-y-2 text-xs text-slate-300">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-gold mt-0.5"></i>
+                <span><strong>Full Wall Painting & Recoating:</strong> Full drywall prep, seam smoothing, and 2 coats of paint across rooms/walls.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-gold mt-0.5"></i>
+                <span><strong>Flooring & Trim Replacement:</strong> Carpet tear-out, luxury vinyl plank (LVP) / laminate layout, and new baseboard trim.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-gold mt-0.5"></i>
+                <span><strong>Fixtures & Recaulking:</strong> Swapping light fixtures, switches, vanity hardware, and fresh silicone caulking in tubs/sinks.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="space-y-2 pt-2">
+          <button onclick="addToCart('Premium Turnover Package', 0, 'card-turnover-premium')" class="w-full bg-gold text-navy hover:bg-gold-hover hover:text-white font-bold py-3 px-4 rounded-xl transition flex items-center justify-center gap-2 text-sm shadow-md">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Add Premium Package to Quote Request</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- TAB 3: Estimate Checklist & Selection -->
+  <main id="tab-calculator-content" class="hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+    <div class="text-center space-y-2">
+      <h2 class="text-2xl font-extrabold text-navy">Service Estimator & Checklist</h2>
+      <p class="text-xs sm:text-sm text-slate-600">Select services to calculate total handyman labor cost or request a free turnover estimate.</p>
+    </div>
+
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+      
+      <!-- Checklist Items List -->
+      <div class="space-y-3 text-sm">
+        <p class="text-xs font-extrabold text-navy uppercase tracking-wider">Handyman Services (Flat Labor Rate)</p>
+        
+        <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="75" data-name="Standard Electrical Outlet Replacement" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> Standard Electrical Outlet Replacement</span>
+          <span class="font-bold text-navy text-xs">$75 / ea (Labor)</span>
+        </label>
+        <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="65" data-name="Light Switch / Toggle Replacement" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> Light Switch / Toggle Replacement</span>
+          <span class="font-bold text-navy text-xs">$65 / ea (Labor)</span>
+        </label>
+        <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="85" data-name="GFCI Outlet Replacement" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> GFCI Outlet Replacement</span>
+          <span class="font-bold text-navy text-xs">$85 / ea (Labor)</span>
+        </label>
+        <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="80" data-name="Smoke & CO Detector Installation" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> Smoke & CO Detector Installation</span>
+          <span class="font-bold text-navy text-xs">$80 / ea (Labor)</span>
+        </label>
+        <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="130" data-name="Smart Doorbell Installation" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> Smart Doorbell Installation</span>
+          <span class="font-bold text-navy text-xs">$130 / ea (Labor)</span>
+        </label>
+        <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="250" data-name="Full Toilet Replacement" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> Full Toilet Replacement</span>
+          <span class="font-bold text-navy text-xs">$250 / ea (Labor)</span>
+        </label>
+        <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="110" data-name="Toilet Repair & Fill Valve Swap" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> Toilet Repair & Fill Valve Swap</span>
+          <span class="font-bold text-navy text-xs">$110 / ea (Labor)</span>
+        </label>
+        <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="160" data-name="Garbage Disposal Replacement" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> Garbage Disposal Replacement</span>
+          <span class="font-bold text-navy text-xs">$160 / ea (Labor)</span>
+        </label>
+        <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="80" data-name="Flexible Water Line Swap" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> Flexible Water Line Swap</span>
+          <span class="font-bold text-navy text-xs">$80 / ea (Labor)</span>
+        </label>
+        <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="140" data-name="Kitchen & Bath Faucet Replacement" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> Kitchen & Bath Faucet Replacement</span>
+          <span class="font-bold text-navy text-xs">$140 / ea (Labor)</span>
+        </label>
+        <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="150" data-name="Ceiling Fan & Light Fixture Replacement" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> Ceiling Fan & Light Fixture Replacement</span>
+          <span class="font-bold text-navy text-xs">$150 / ea (Labor)</span>
+        </label>
+        <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="120" data-name="TV Wall Mounting & Cable Hiding" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> TV Wall Mounting & Cable Hiding</span>
+          <span class="font-bold text-navy text-xs">$120 / ea (Labor)</span>
+        </label>
+        <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="350" data-name="Critter Guard Mesh Installation" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> Critter Guard Mesh Installation</span>
+          <span class="font-bold text-navy text-xs">$350 base (Labor)</span>
+        </label>
+
+        <p class="text-xs font-extrabold text-gold-deep uppercase tracking-wider pt-3">Turnover Packages</p>
+        <label class="flex items-center justify-between p-3.5 bg-amber-50/60 rounded-xl border border-amber-200 cursor-pointer hover:bg-amber-100/50 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="0" data-name="Basic Turnover Package" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> Module 1: Basic Turnover Package</span>
+          <span class="font-bold text-navy text-xs bg-white px-2.5 py-1 rounded-md border border-amber-200">Free Estimate</span>
+        </label>
+        <label class="flex items-center justify-between p-3.5 bg-yellow-50/80 rounded-xl border border-gold/30 cursor-pointer hover:bg-yellow-100/80 transition">
+          <span class="flex items-center gap-2 font-medium"><input type="checkbox" data-price="0" data-name="Premium Turnover Package" onchange="calcTotal()" class="calc-item w-4 h-4 text-gold-deep"> Module 2: Premium Turnover Package</span>
+          <span class="font-bold text-navy text-xs bg-white px-2.5 py-1 rounded-md border border-gold/30">Free Estimate</span>
+        </label>
+      </div>
+
+      <!-- Selection Total Summary Box -->
+      <div class="border-t border-slate-200 pt-4 space-y-2">
+        <div class="flex justify-between items-center text-lg font-bold text-navy">
+          <span>Estimated Handyman Labor Subtotal:</span>
+          <span id="calc-result" class="text-2xl text-gold-deep">$0</span>
+        </div>
+        <p class="text-[11px] text-slate-500 font-semibold">*Note: All rates above are for LABOR ONLY. Parts and materials are supplied by the client or billed at exact cost with receipts.</p>
+      </div>
+
+      <!-- Direct Send Options in Checklist -->
+      <div class="pt-2 grid sm:grid-cols-2 gap-3">
+        <a id="calc-email-btn" href="mailto:zeehomservices@zeehomeservices.com?subject=Service%20Estimate%20Request&body=Hello%20Zee%20Home%20Services,%0A%0AI%20would%20like%20to%20request%20service." class="w-full bg-navy text-white hover:bg-navy-light font-bold py-3.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs border border-slate-700">
+          <i class="fa-solid fa-envelope text-gold"></i>
+          <span>Email Service Inquiry</span>
+        </a>
+        <a href="tel:2792577429" class="w-full bg-gold text-navy hover:bg-gold-hover hover:text-white font-bold py-3.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs shadow-md">
+          <i class="fa-solid fa-phone"></i>
+          <span>Call (279) 257-7429 to Discuss</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Google Maps Link Banner -->
+  <section class="bg-slate-900 text-white py-16 border-t border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-navy-light rounded-3xl border border-slate-700 p-8 sm:p-12 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="space-y-4 text-center md:text-left max-w-2xl">
+          <div class="inline-flex items-center gap-2 bg-gold/10 border border-gold/30 text-gold px-3 py-1 rounded-full text-xs font-semibold">
+            <i class="fa-solid fa-star text-amber-400"></i> Google Business Profile Verified
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+            Check Our Google Profile & Real Customer Reviews
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            See authentic feedback from homeowners in Rancho Cordova, Folsom, El Dorado Hills, and Sacramento. Click below to view our official Google location and ratings!
+          </p>
+          <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-slate-400">
+            <span class="flex items-center gap-1 text-amber-400 font-bold">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <span class="text-white ml-1 font-semibold">5.0 Star Rating</span>
+            </span>
+            <span>•</span>
+            <span class="text-slate-300"><i class="fa-solid fa-location-dot text-gold mr-1"></i>Rancho Cordova & Regional Areas</span>
+          </div>
+        </div>
+
+        <!-- Direct Action Buttons -->
+        <div class="flex flex-col sm:flex-row md:flex-col gap-3 w-full sm:w-auto">
+          <a href="https://maps.app.goo.gl/3SrKrKDFjpmpw22Y9?g_st=ic" target="_blank" rel="noopener noreferrer" class="bg-gold text-navy font-bold hover:bg-gold-hover hover:text-white px-6 py-4 rounded-xl transition flex items-center justify-center gap-3 text-sm shadow-lg hover:shadow-gold/20 text-center">
+            <i class="fa-solid fa-arrow-up-right-from-square text-lg"></i>
+            <span>Open Google Profile & Reviews</span>
+          </a>
+          <a href="tel:2792577429" class="bg-slate-800 text-slate-200 hover:bg-slate-700 border border-slate-600 px-6 py-3.5 rounded-xl transition flex items-center justify-center gap-2 text-xs font-semibold">
+            <i class="fa-solid fa-phone text-gold"></i>
+            <span>Call (279) 257-7429 Directly</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Sticky Bottom Quote Bar -->
+  <div id="sticky-cart-bar" class="fixed bottom-0 left-0 right-0 bg-navy/95 backdrop-blur-md border-t border-slate-700 text-white p-3 z-40 transition-transform transform translate-y-full">
+    <div class="max-w-7xl mx-auto px-4 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-gold rounded-xl flex items-center justify-center text-navy font-bold">
+          <i class="fa-solid fa-clipboard-list text-lg"></i>
+        </div>
+        <div>
+          <p class="text-xs text-slate-300">Selected Items (<span id="sticky-item-count">0</span>):</p>
+          <p class="text-base font-extrabold text-gold"><span id="sticky-total-price">$0</span> <span class="text-[10px] text-slate-300 font-normal">(Labor Only)</span></p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="toggleCartDrawer()" class="bg-gold text-navy font-bold px-4 py-2.5 rounded-xl text-xs hover:bg-gold-hover hover:text-white transition flex items-center gap-2 shadow-md">
+          <i class="fa-solid fa-list-check"></i>
+          <span>View Selection Summary</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Drawer Modal -->
+  <div id="cart-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex justify-end">
+    <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col justify-between p-6 overflow-y-auto relative">
+      <div class="space-y-6">
+        <div class="flex justify-between items-center border-b border-slate-200 pb-4">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-clipboard-list text-gold-deep text-xl"></i>
+            <h3 class="text-xl font-extrabold text-navy">Your Labor Summary</h3>
+          </div>
+          <button onclick="toggleCartDrawer()" class="text-slate-400 hover:text-navy text-xl p-1">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div id="cart-items-container" class="space-y-3">
+          <!-- Cart items render here -->
+          <p class="text-xs text-slate-500 text-center py-8">Your list is currently empty. Click "+ Add Service" on any item!</p>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-200 pt-4 space-y-4">
+        <div>
+          <div class="flex justify-between items-center text-sm font-bold text-navy">
+            <span>Estimated Handyman Labor:</span>
+            <span id="drawer-total-price" class="text-xl text-gold-deep">$0</span>
+          </div>
+          <p class="text-[10px] text-slate-500 mt-1 font-semibold">*Prices cover labor only. Customer supplies parts/materials or billed at cost.</p>
+        </div>
+
+        <div class="space-y-2">
+          <a id="btn-call-order" href="tel:2792577429" class="w-full bg-gold text-navy font-bold py-3.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-sm shadow-md hover:bg-gold-hover hover:text-white">
+            <i class="fa-solid fa-phone"></i>
+            <span>Call to Schedule (279) 257-7429</span>
+          </a>
+          <a id="btn-email-order" href="mailto:zeehomservices@zeehomeservices.com" class="w-full bg-navy text-white font-bold py-3 px-4 rounded-xl transition flex items-center justify-center gap-2 text-xs hover:bg-navy-light border border-slate-700">
+            <i class="fa-solid fa-envelope text-gold"></i>
+            <span>Send Request via Email</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-navy text-slate-300 py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8 text-sm">
+      
+      <!-- Column 1: Brand & Bio -->
+      <div class="space-y-3">
+        <h3 class="text-xl font-extrabold text-white">Zee Home Services LLC</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Your trusted local specialist for home repairs, maintenance, turnover services, and fixture installations in Rancho Cordova and surrounding Sacramento communities.
+        </p>
+      </div>
+
+      <!-- Column 2: Direct Contacts -->
+      <div class="space-y-2">
+        <h4 class="text-sm font-bold text-white uppercase tracking-wider">Direct Contact</h4>
+        <div class="space-y-1.5 text-xs">
+          <p class="flex items-center gap-2">
+            <i class="fa-solid fa-phone text-gold"></i>
+            <a href="tel:2792577429" class="hover:text-gold transition font-bold">(279) 257-7429</a>
+          </p>
+          <p class="flex items-center gap-2">
+            <i class="fa-solid fa-envelope text-gold"></i>
+            <a href="mailto:zeehomservices@zeehomeservices.com" class="hover:text-gold transition">zeehomservices@zeehomeservices.com</a>
+          </p>
+          <p class="flex items-center gap-2 text-slate-400">
+            <i class="fa-solid fa-location-dot text-gold"></i>
+            <span>Rancho Cordova, CA</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Column 3: Links & Social -->
+      <div class="space-y-3">
+        <h4 class="text-sm font-bold text-white uppercase tracking-wider">Official Channels</h4>
+        <div class="flex items-center gap-3">
+          <a href="https://maps.app.goo.gl/3SrKrKDFjpmpw22Y9?g_st=ic" target="_blank" rel="noopener noreferrer" class="w-9 h-9 bg-navy-light rounded-xl flex items-center justify-center hover:text-gold transition border border-slate-700" title="Google Maps Profile">
+            <i class="fa-solid fa-map-location-dot"></i>
+          </a>
+          <a href="https://youtube.com/@zeehomeservices?si=7J5KoyimQtkkhYjF" target="_blank" rel="noopener noreferrer" class="w-9 h-9 bg-navy-light rounded-xl flex items-center justify-center hover:text-red-400 transition border border-slate-700" title="YouTube Channel">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-9 h-9 bg-navy-light rounded-xl flex items-center justify-center hover:text-blue-400 transition border border-slate-700" title="Facebook Page">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+        </div>
+        <p class="text-xs text-slate-500">© 2026 Zee Home Services LLC. All rights reserved.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- JavaScript Estimate & Cart Request Logic -->
+  <script>
+    let cart = [];
+
+    function switchTab(tab) {
+      document.getElementById('tab-home-content').classList.add('hidden');
+      document.getElementById('tab-handyman-content').classList.add('hidden');
+      document.getElementById('tab-turnover-content').classList.add('hidden');
+      document.getElementById('tab-calculator-content').classList.add('hidden');
+
+      document.getElementById('btn-home').classList.remove('active');
+      document.getElementById('btn-handyman').classList.remove('active');
+      document.getElementById('btn-turnover').classList.remove('active');
+      document.getElementById('btn-calculator').classList.remove('active');
+
+      if (tab === 'home') {
+        document.getElementById('tab-home-content').classList.remove('hidden');
+        document.getElementById('btn-home').classList.add('active');
+      } else if (tab === 'handyman') {
+        document.getElementById('tab-handyman-content').classList.remove('hidden');
+        document.getElementById('btn-handyman').classList.add('active');
+      } else if (tab === 'turnover') {
+        document.getElementById('tab-turnover-content').classList.remove('hidden');
+        document.getElementById('btn-turnover').classList.add('active');
+      } else if (tab === 'calculator') {
+        document.getElementById('tab-calculator-content').classList.remove('hidden');
+        document.getElementById('btn-calculator').classList.add('active');
+      }
+    }
+
+    function addToCart(title, price, cardId) {
+      // Check if already in list
+      const existing = cart.find(item => item.title === title);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ title, price, qty: 1 });
+      }
+
+      // Flying animation effect
+      const card = document.getElementById(cardId);
+      if (card) {
+        const rect = card.getBoundingClientRect();
+        const flyer = document.createElement('div');
+        flyer.className = 'flying-item bg-gold text-navy font-bold p-3 rounded-full shadow-2xl flex items-center justify-center';
+        flyer.innerHTML = '<i class="fa-solid fa-clipboard-list text-xl"></i>';
+        flyer.style.left = `${rect.left + rect.width / 2}px`;
+        flyer.style.top = `${rect.top + rect.height / 2}px`;
+        document.body.appendChild(flyer);
+
+        setTimeout(() => {
+          flyer.style.transform = 'scale(0.2) translate(300px, -600px)';
+          flyer.style.opacity = '0';
+        }, 50);
+
+        setTimeout(() => {
+          flyer.remove();
+        }, 800);
+      }
+
+      updateCartUI();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function changeQty(index, delta) {
+      if (cart[index]) {
+        cart[index].qty += delta;
+        if (cart[index].qty <= 0) {
+          cart.splice(index, 1);
+        }
+      }
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const container = document.getElementById('cart-items-container');
+      const badgeCount = document.getElementById('cart-badge-count');
+      const stickyCount = document.getElementById('sticky-item-count');
+      const stickyTotal = document.getElementById('sticky-total-price');
+      const drawerTotal = document.getElementById('drawer-total-price');
+      const stickyBar = document.getElementById('sticky-cart-bar');
+
+      let totalItems = 0;
+      let totalCost = 0;
+      let hasCustomEstimateItem = false;
+
+      if (cart.length === 0) {
+        container.innerHTML = '<p class="text-xs text-slate-500 text-center py-8">Your list is currently empty. Click "+ Add Service" on any item!</p>';
+        stickyBar.classList.add('translate-y-full');
+      } else {
+        stickyBar.classList.remove('translate-y-full');
+        let html = '';
+
+        cart.forEach((item, idx) => {
+          totalItems += item.qty;
+          if (item.price > 0) {
+            totalCost += item.price * item.qty;
+          } else {
+            hasCustomEstimateItem = true;
+          }
+
+          const priceLabel = item.price > 0 ? `$${item.price * item.qty} ($${item.price}/ea labor)` : 'Free Quote Request';
+
+          html += `
+            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-2xl border border-slate-200 text-xs">
+              <div class="space-y-0.5">
+                <p class="font-bold text-navy">${item.title}</p>
+                <p class="text-gold-deep font-semibold">${priceLabel}</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="flex items-center bg-white rounded-lg border border-slate-200">
+                  <button onclick="changeQty(${idx}, -1)" class="px-2 py-1 text-slate-600 hover:text-navy font-bold">-</button>
+                  <span class="px-2 font-bold">${item.qty}</span>
+                  <button onclick="changeQty(${idx}, 1)" class="px-2 py-1 text-slate-600 hover:text-navy font-bold">+</button>
+                </div>
+                <button onclick="removeFromCart(${idx})" class="text-red-400 hover:text-red-600 p-1">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        });
+
+        container.innerHTML = html;
+
+        // Update email link for Cart Order
+        const emailBtn = document.getElementById('btn-email-order');
+        if (emailBtn) {
+          let orderList = cart.map(i => `• ${i.title} (Qty: ${i.qty}) - ${i.price > 0 ? '$' + (i.price * i.qty) + ' Labor' : 'Custom Quote'}`).join('%0A');
+          let costSummary = hasCustomEstimateItem ? `$${totalCost} (Plus Turnover Estimate)` : `$${totalCost}`;
+          emailBtn.href = `mailto:zeehomservices@zeehomeservices.com?subject=Service%20Request&body=Hello%20Zee%20Home%20Services,%0A%0AI%20would%20like%20to%20request%20service%20for:%0A${orderList}%0A%0ATotal%20Estimated%20Labor:%20${costSummary}%0A%0APlease%20contact%20me%20back%20to%20confirm%20schedule!`;
+        }
+      }
+
+      badgeCount.innerText = totalItems;
+      stickyCount.innerText = totalItems;
+
+      let displayText = hasCustomEstimateItem && totalCost > 0 
+        ? `$${totalCost} + Free Turnover Quote`
+        : hasCustomEstimateItem && totalCost === 0 
+        ? 'Free Turnover Quote'
+        : `$${totalCost}`;
+
+      stickyTotal.innerText = displayText;
+      drawerTotal.innerText = displayText;
+    }
+
+    function toggleCartDrawer() {
+      const modal = document.getElementById('cart-modal');
+      modal.classList.toggle('hidden');
+    }
+
+    function calcTotal() {
+      const items = document.querySelectorAll('.calc-item');
+      let total = 0;
+      let selectedNames = [];
+
+      items.forEach(item => {
+        if (item.checked) {
+          const price = parseFloat(item.getAttribute('data-price')) || 0;
+          total += price;
+          selectedNames.push(item.getAttribute('data-name') + (price > 0 ? ` ($${price} Labor)` : ' (Free Quote)'));
+        }
+      });
+
+      const calcResultEl = document.getElementById('calc-result');
+      const calcEmailBtn = document.getElementById('calc-email-btn');
+
+      calcResultEl.innerText = `$${total}`;
+
+      let listText = selectedNames.length > 0 ? selectedNames.map(name => `%0A• ${name}`).join('') : '%0A(No specific items selected)';
+      calcEmailBtn.href = `mailto:zeehomservices@zeehomeservices.com?subject=Service%20Inquiry&body=Hello%20Zee%20Home%20Services,%0A%0AI%20selected%20the%20following%20services:%0A${listText}%0A%0AEstimated%20Handyman%20Labor%20Subtotal:%20$${total}%0A%0APlease%20contact%20me%20to%20schedule!`;
+    }
+  </script>
+
+</body>
+</html>
